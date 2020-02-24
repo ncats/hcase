@@ -1,0 +1,650 @@
+[SYNTAX] python embed_structure.py <tab-separated file of structures> <Column name in structures file containing SMILES> <Column name of structure IDs> <Hilbert-Curve Mapped Scaffold Embeding> <Order of Hilbert-Curve> <Number of Dimensions> <Name stem of output data frame and plot>
+         bms  ...                                       scaffold_key
+0      C1CO1  ...  3 0 0 1 0 3 0 0 1 0 0 1 0 1 0 0 1 0 0 0 0 0 0 ...
+1    C1CCCC1  ...  5 0 0 1 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ...
+2  C=C1CCCC1  ...  5 0 0 1 0 5 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 ...
+3  O=C1CCCC1  ...  5 0 0 1 0 5 0 0 0 0 0 0 0 1 0 0 1 0 0 0 0 0 0 ...
+4    C1CCOC1  ...  5 0 0 1 0 5 0 0 1 0 0 1 0 1 0 0 1 0 0 0 0 0 0 ...
+
+[5 rows x 4 columns]
+(546, 4)
+[WARNING] SMILES: O=c1cc(-c2ccccc2)oc2cc(OC3CCCCO3)ccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1cc(-c2ccccc2)oc2ccc(C3CCCCO3)cc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1cc(-c2ccccc2)oc2c(C3CCCCO3)cccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1cc(-c2cccc(OC3CCCCO3)c2)oc2cc(OC3CCCCO3)ccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1c(OC2CCCC(COC3CCCCO3)O2)c(-c2ccccc2)oc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1c(OC2CCCCO2)c(-c2ccccc2)oc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1cc(-c2ccccc2)oc2c(C3CCCCO3)cccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1cc(-c2ccccc2)oc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=C(Nc1cc2ccc(OC3CCCCO3)cc2oc1=O)c1ccccc1 cannot be processed by RDKit.
+[WARNING] SMILES: O=C1C2=C(OC3(CCc4cc5ccoc(=O)c5cc4O3)C2)C(=O)c2ccccc21 cannot be processed by RDKit.
+[WARNING] SMILES: O=C1OC[C@]23CC(C(=O)c4cccc1c42)C1c2cccc4c(=O)occ(c24)C(=O)C13 cannot be processed by RDKit.
+[WARNING] SMILES: O=C1c2ccccc2OC(c2ccccc2)C1c1cccc2c(=O)cc(-c3ccccc3)oc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=C1c2cc3ccoc(=O)c3cc2CC2(C34Cc5cc6c(=O)occc6cc5C(=O)C3O4)OC12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1c2ccccc2oc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=C(c1cc(-c2ccccc2)c[nH]c1=O)C1C=CC2CCCCC2C1 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1[nH]c(-c2c[nH]c3cccc(Cc4cnc[nH]4)c23)cnc1-c1c[nH]c2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1cc(-c2ccccc2)oc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1cc(-c2ccccc2)oc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1ccc2ccc(OC3CCCCO3)cc2o1 cannot be processed by RDKit.
+[WARNING] SMILES: O=C1CCOc2ccoc(=O)c21 cannot be processed by RDKit.
+[WARNING] SMILES: O=C(Nc1cc2ccccc2oc1=O)C1=NOC2CC=CCC2C1 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1ccoc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1c2ccccc2oc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1cc(-c2ccccc2)oc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1cc(-c2ccccc2)oc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=C1c2ccc(=O)[nH]c2C(=O)c2[nH]c(=O)ccc21 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1cc(-c2ccccc2)oc2ccccc12 cannot be processed by RDKit.
+[WARNING] SMILES: O=c1c2ccccc2oc2ccccc12 cannot be processed by RDKit.
+nr_scaffolds: 546, bucket_nr: 1024,  bucket_size 0.533724
+[*] Number of input structures: 332
+[*] Number of structures for which scaffold_key was generated: 304
+[*] Processing structure 1 out of 304 .
+[*] Processing structure 2 out of 304 .
+[*] Processing structure 3 out of 304 .
+[*] Processing structure 4 out of 304 .
+[*] Processing structure 5 out of 304 .
+[*] Processing structure 6 out of 304 .
+[*] Processing structure 7 out of 304 .
+[*] Processing structure 8 out of 304 .
+[*] Processing structure 9 out of 304 .
+[*] Processing structure 10 out of 304 .
+[*] Processing structure 11 out of 304 .
+[*] Processing structure 12 out of 304 .
+[*] Processing structure 13 out of 304 .
+[*] Processing structure 14 out of 304 .
+[*] Processing structure 15 out of 304 .
+[*] Processing structure 16 out of 304 .
+[*] Processing structure 17 out of 304 .
+[*] Processing structure 18 out of 304 .
+[*] Processing structure 19 out of 304 .
+[*] Processing structure 20 out of 304 .
+[*] Processing structure 21 out of 304 .
+[*] Processing structure 22 out of 304 .
+[*] Processing structure 23 out of 304 .
+[*] Processing structure 24 out of 304 .
+[*] Processing structure 25 out of 304 .
+[*] Processing structure 26 out of 304 .
+[*] Processing structure 27 out of 304 .
+[*] Processing structure 28 out of 304 .
+[*] Processing structure 29 out of 304 .
+[*] Processing structure 30 out of 304 .
+[*] Processing structure 31 out of 304 .
+[*] Processing structure 32 out of 304 .
+[*] Processing structure 33 out of 304 .
+[*] Processing structure 34 out of 304 .
+[*] Processing structure 35 out of 304 .
+[*] Processing structure 36 out of 304 .
+[*] Processing structure 37 out of 304 .
+[*] Processing structure 38 out of 304 .
+[*] Processing structure 39 out of 304 .
+[*] Processing structure 40 out of 304 .
+[*] Processing structure 41 out of 304 .
+[*] Processing structure 42 out of 304 .
+[*] Processing structure 43 out of 304 .
+[*] Processing structure 44 out of 304 .
+[*] Processing structure 45 out of 304 .
+[*] Processing structure 46 out of 304 .
+[*] Processing structure 47 out of 304 .
+[*] Processing structure 48 out of 304 .
+[*] Processing structure 49 out of 304 .
+[*] Processing structure 50 out of 304 .
+[*] Processing structure 51 out of 304 .
+[*] Processing structure 52 out of 304 .
+[*] Processing structure 53 out of 304 .
+[*] Processing structure 54 out of 304 .
+[*] Processing structure 55 out of 304 .
+[*] Processing structure 56 out of 304 .
+[*] Processing structure 57 out of 304 .
+[*] Processing structure 58 out of 304 .
+[*] Processing structure 59 out of 304 .
+[*] Processing structure 60 out of 304 .
+[*] Processing structure 61 out of 304 .
+[*] Processing structure 62 out of 304 .
+[*] Processing structure 63 out of 304 .
+[*] Processing structure 64 out of 304 .
+[*] Processing structure 65 out of 304 .
+[*] Processing structure 66 out of 304 .
+[*] Processing structure 67 out of 304 .
+[*] Processing structure 68 out of 304 .
+[*] Processing structure 69 out of 304 .
+[*] Processing structure 70 out of 304 .
+[*] Processing structure 71 out of 304 .
+[*] Processing structure 72 out of 304 .
+[*] Processing structure 73 out of 304 .
+[*] Processing structure 74 out of 304 .
+[*] Processing structure 75 out of 304 .
+[*] Processing structure 76 out of 304 .
+[*] Processing structure 77 out of 304 .
+[*] Processing structure 78 out of 304 .
+[*] Processing structure 79 out of 304 .
+[*] Processing structure 80 out of 304 .
+[*] Processing structure 81 out of 304 .
+[*] Processing structure 82 out of 304 .
+[*] Processing structure 83 out of 304 .
+[*] Processing structure 84 out of 304 .
+[*] Processing structure 85 out of 304 .
+[*] Processing structure 86 out of 304 .
+[*] Processing structure 87 out of 304 .
+[*] Processing structure 88 out of 304 .
+[*] Processing structure 89 out of 304 .
+[*] Processing structure 90 out of 304 .
+[*] Processing structure 91 out of 304 .
+[*] Processing structure 92 out of 304 .
+[*] Processing structure 93 out of 304 .
+[*] Processing structure 94 out of 304 .
+[*] Processing structure 95 out of 304 .
+[*] Processing structure 96 out of 304 .
+[*] Processing structure 97 out of 304 .
+[*] Processing structure 98 out of 304 .
+[*] Processing structure 99 out of 304 .
+[*] Processing structure 100 out of 304 .
+[*] Processing structure 101 out of 304 .
+[*] Processing structure 102 out of 304 .
+[*] Processing structure 103 out of 304 .
+[*] Processing structure 104 out of 304 .
+[*] Processing structure 105 out of 304 .
+[*] Processing structure 106 out of 304 .
+[*] Processing structure 107 out of 304 .
+[*] Processing structure 108 out of 304 .
+[*] Processing structure 109 out of 304 .
+[*] Processing structure 110 out of 304 .
+[*] Processing structure 111 out of 304 .
+[*] Processing structure 112 out of 304 .
+[*] Processing structure 113 out of 304 .
+[*] Processing structure 114 out of 304 .
+[*] Processing structure 115 out of 304 .
+[*] Processing structure 116 out of 304 .
+[*] Processing structure 117 out of 304 .
+[*] Processing structure 118 out of 304 .
+[*] Processing structure 119 out of 304 .
+[*] Processing structure 120 out of 304 .
+[*] Processing structure 121 out of 304 .
+[*] Processing structure 122 out of 304 .
+[*] Processing structure 123 out of 304 .
+[*] Processing structure 124 out of 304 .
+[*] Processing structure 125 out of 304 .
+[*] Processing structure 126 out of 304 .
+[*] Processing structure 127 out of 304 .
+[*] Processing structure 128 out of 304 .
+[*] Processing structure 129 out of 304 .
+[*] Processing structure 130 out of 304 .
+[*] Processing structure 131 out of 304 .
+[*] Processing structure 132 out of 304 .
+[*] Processing structure 133 out of 304 .
+[*] Processing structure 134 out of 304 .
+[*] Processing structure 135 out of 304 .
+[*] Processing structure 136 out of 304 .
+[*] Processing structure 137 out of 304 .
+[*] Processing structure 138 out of 304 .
+[*] Processing structure 139 out of 304 .
+[*] Processing structure 140 out of 304 .
+[*] Processing structure 141 out of 304 .
+[*] Processing structure 142 out of 304 .
+[*] Processing structure 143 out of 304 .
+[*] Processing structure 144 out of 304 .
+[*] Processing structure 145 out of 304 .
+[*] Processing structure 146 out of 304 .
+[*] Processing structure 147 out of 304 .
+[*] Processing structure 148 out of 304 .
+[*] Processing structure 149 out of 304 .
+[*] Processing structure 150 out of 304 .
+[*] Processing structure 151 out of 304 .
+[*] Processing structure 152 out of 304 .
+[*] Processing structure 153 out of 304 .
+[*] Processing structure 154 out of 304 .
+[*] Processing structure 155 out of 304 .
+[*] Processing structure 156 out of 304 .
+[*] Processing structure 157 out of 304 .
+[*] Processing structure 158 out of 304 .
+[*] Processing structure 159 out of 304 .
+[*] Processing structure 160 out of 304 .
+[*] Processing structure 161 out of 304 .
+[*] Processing structure 162 out of 304 .
+[*] Processing structure 163 out of 304 .
+[*] Processing structure 164 out of 304 .
+[*] Processing structure 165 out of 304 .
+[*] Processing structure 166 out of 304 .
+[*] Processing structure 167 out of 304 .
+[*] Processing structure 168 out of 304 .
+[*] Processing structure 169 out of 304 .
+[*] Processing structure 170 out of 304 .
+[*] Processing structure 171 out of 304 .
+[*] Processing structure 172 out of 304 .
+[*] Processing structure 173 out of 304 .
+[*] Processing structure 174 out of 304 .
+[*] Processing structure 175 out of 304 .
+[*] Processing structure 176 out of 304 .
+[*] Processing structure 177 out of 304 .
+[*] Processing structure 178 out of 304 .
+[*] Processing structure 179 out of 304 .
+[*] Processing structure 180 out of 304 .
+[*] Processing structure 181 out of 304 .
+[*] Processing structure 182 out of 304 .
+[*] Processing structure 183 out of 304 .
+[*] Processing structure 184 out of 304 .
+[*] Processing structure 185 out of 304 .
+[*] Processing structure 186 out of 304 .
+[*] Processing structure 187 out of 304 .
+[*] Processing structure 188 out of 304 .
+[*] Processing structure 189 out of 304 .
+[*] Processing structure 190 out of 304 .
+[*] Processing structure 191 out of 304 .
+[*] Processing structure 192 out of 304 .
+[*] Processing structure 193 out of 304 .
+[*] Processing structure 194 out of 304 .
+[*] Processing structure 195 out of 304 .
+[*] Processing structure 196 out of 304 .
+[*] Processing structure 197 out of 304 .
+[*] Processing structure 198 out of 304 .
+[*] Processing structure 199 out of 304 .
+[*] Processing structure 200 out of 304 .
+[*] Processing structure 201 out of 304 .
+[*] Processing structure 202 out of 304 .
+[*] Processing structure 203 out of 304 .
+[*] Processing structure 204 out of 304 .
+[*] Processing structure 205 out of 304 .
+[*] Processing structure 206 out of 304 .
+[*] Processing structure 207 out of 304 .
+[*] Processing structure 208 out of 304 .
+[*] Processing structure 209 out of 304 .
+[*] Processing structure 210 out of 304 .
+[*] Processing structure 211 out of 304 .
+[*] Processing structure 212 out of 304 .
+[*] Processing structure 213 out of 304 .
+[*] Processing structure 214 out of 304 .
+[*] Processing structure 215 out of 304 .
+[*] Processing structure 216 out of 304 .
+[*] Processing structure 217 out of 304 .
+[*] Processing structure 218 out of 304 .
+[*] Processing structure 219 out of 304 .
+[*] Processing structure 220 out of 304 .
+[*] Processing structure 221 out of 304 .
+[*] Processing structure 222 out of 304 .
+[*] Processing structure 223 out of 304 .
+[*] Processing structure 224 out of 304 .
+[*] Processing structure 225 out of 304 .
+[*] Processing structure 226 out of 304 .
+[*] Processing structure 227 out of 304 .
+[*] Processing structure 228 out of 304 .
+[*] Processing structure 229 out of 304 .
+[*] Processing structure 230 out of 304 .
+[*] Processing structure 231 out of 304 .
+[*] Processing structure 232 out of 304 .
+[*] Processing structure 233 out of 304 .
+[*] Processing structure 234 out of 304 .
+[*] Processing structure 235 out of 304 .
+[*] Processing structure 236 out of 304 .
+[*] Processing structure 237 out of 304 .
+[*] Processing structure 238 out of 304 .
+[*] Processing structure 239 out of 304 .
+[*] Processing structure 240 out of 304 .
+[*] Processing structure 241 out of 304 .
+[*] Processing structure 242 out of 304 .
+[*] Processing structure 243 out of 304 .
+[*] Processing structure 244 out of 304 .
+[*] Processing structure 245 out of 304 .
+[*] Processing structure 246 out of 304 .
+[*] Processing structure 247 out of 304 .
+[*] Processing structure 248 out of 304 .
+[*] Processing structure 249 out of 304 .
+[*] Processing structure 250 out of 304 .
+[*] Processing structure 251 out of 304 .
+[*] Processing structure 252 out of 304 .
+[*] Processing structure 253 out of 304 .
+[*] Processing structure 254 out of 304 .
+[*] Processing structure 255 out of 304 .
+[*] Processing structure 256 out of 304 .
+[*] Processing structure 257 out of 304 .
+[*] Processing structure 258 out of 304 .
+[*] Processing structure 259 out of 304 .
+[*] Processing structure 260 out of 304 .
+[*] Processing structure 261 out of 304 .
+[*] Processing structure 262 out of 304 .
+[*] Processing structure 263 out of 304 .
+[*] Processing structure 264 out of 304 .
+[*] Processing structure 265 out of 304 .
+[*] Processing structure 266 out of 304 .
+[*] Processing structure 267 out of 304 .
+[*] Processing structure 268 out of 304 .
+[*] Processing structure 269 out of 304 .
+[*] Processing structure 270 out of 304 .
+[*] Processing structure 271 out of 304 .
+[*] Processing structure 272 out of 304 .
+[*] Processing structure 273 out of 304 .
+[*] Processing structure 274 out of 304 .
+[*] Processing structure 275 out of 304 .
+[*] Processing structure 276 out of 304 .
+[*] Processing structure 277 out of 304 .
+[*] Processing structure 278 out of 304 .
+[*] Processing structure 279 out of 304 .
+[*] Processing structure 280 out of 304 .
+[*] Processing structure 281 out of 304 .
+[*] Processing structure 282 out of 304 .
+[*] Processing structure 283 out of 304 .
+[*] Processing structure 284 out of 304 .
+[*] Processing structure 285 out of 304 .
+[*] Processing structure 286 out of 304 .
+[*] Processing structure 287 out of 304 .
+[*] Processing structure 288 out of 304 .
+[*] Processing structure 289 out of 304 .
+[*] Processing structure 290 out of 304 .
+[*] Processing structure 291 out of 304 .
+[*] Processing structure 292 out of 304 .
+[*] Processing structure 293 out of 304 .
+[*] Processing structure 294 out of 304 .
+[*] Processing structure 295 out of 304 .
+[*] Processing structure 296 out of 304 .
+[*] Processing structure 297 out of 304 .
+[*] Processing structure 298 out of 304 .
+[*] Processing structure 299 out of 304 .
+[*] Processing structure 300 out of 304 .
+[*] Processing structure 301 out of 304 .
+[*] Processing structure 302 out of 304 .
+[*] Processing structure 303 out of 304 .
+[*] Processing structure 304 out of 304 .
+Closest order: 32, bucket id: 61
+Closest order: 285, bucket id: 535
+Closest order: 285, bucket id: 535
+Closest order: 37, bucket id: 70
+Closest order: 413, bucket id: 775
+Closest order: 285, bucket id: 535
+Closest order: 76, bucket id: 143
+Closest order: 50, bucket id: 95
+Closest order: 446, bucket id: 837
+Closest order: 13, bucket id: 25
+Closest order: 37, bucket id: 70
+Closest order: 285, bucket id: 535
+Closest order: 50, bucket id: 95
+Closest order: 50, bucket id: 95
+Closest order: 246, bucket id: 462
+Closest order: 246, bucket id: 462
+Closest order: 285, bucket id: 535
+Closest order: 44, bucket id: 83
+Closest order: 11, bucket id: 22
+Closest order: 11, bucket id: 22
+Closest order: 11, bucket id: 22
+Closest order: 11, bucket id: 22
+Closest order: 181, bucket id: 340
+Closest order: 116, bucket id: 218
+Closest order: 162, bucket id: 305
+Closest order: 209, bucket id: 393
+Closest order: 213, bucket id: 400
+Closest order: 167, bucket id: 314
+Closest order: 45, bucket id: 85
+Closest order: 31, bucket id: 59
+Closest order: 31, bucket id: 59
+Closest order: 90, bucket id: 170
+Closest order: 234, bucket id: 439
+Closest order: 213, bucket id: 400
+Closest order: 44, bucket id: 83
+Closest order: 258, bucket id: 484
+Closest order: 11, bucket id: 22
+Closest order: 11, bucket id: 22
+Closest order: 37, bucket id: 70
+Closest order: 361, bucket id: 677
+Closest order: 259, bucket id: 486
+Closest order: 234, bucket id: 439
+Closest order: 183, bucket id: 344
+Closest order: 252, bucket id: 473
+Closest order: 303, bucket id: 569
+Closest order: 83, bucket id: 157
+Closest order: 280, bucket id: 526
+Closest order: 280, bucket id: 526
+Closest order: 234, bucket id: 439
+Closest order: 162, bucket id: 305
+Closest order: 124, bucket id: 233
+Closest order: 192, bucket id: 361
+Closest order: 143, bucket id: 269
+Closest order: 116, bucket id: 218
+Closest order: 480, bucket id: 900
+Closest order: 167, bucket id: 314
+Closest order: 41, bucket id: 78
+Closest order: 315, bucket id: 591
+Closest order: 227, bucket id: 426
+Closest order: 187, bucket id: 351
+Closest order: 37, bucket id: 70
+Closest order: 365, bucket id: 685
+Closest order: 245, bucket id: 460
+Closest order: 10, bucket id: 20
+Closest order: 229, bucket id: 430
+Closest order: 40, bucket id: 76
+Closest order: 364, bucket id: 683
+Closest order: 162, bucket id: 305
+Closest order: 207, bucket id: 389
+Closest order: 227, bucket id: 426
+Closest order: 31, bucket id: 59
+Closest order: 31, bucket id: 59
+Closest order: 302, bucket id: 567
+Closest order: 227, bucket id: 426
+Closest order: 302, bucket id: 567
+Closest order: 302, bucket id: 567
+Closest order: 161, bucket id: 303
+Closest order: 193, bucket id: 363
+Closest order: 193, bucket id: 363
+Closest order: 168, bucket id: 316
+Closest order: 135, bucket id: 254
+Closest order: 315, bucket id: 591
+Closest order: 385, bucket id: 722
+Closest order: 67, bucket id: 127
+Closest order: 261, bucket id: 490
+Closest order: 230, bucket id: 432
+Closest order: 162, bucket id: 305
+Closest order: 448, bucket id: 840
+Closest order: 465, bucket id: 872
+Closest order: 227, bucket id: 426
+Closest order: 510, bucket id: 957
+Closest order: 162, bucket id: 305
+Closest order: 162, bucket id: 305
+Closest order: 244, bucket id: 458
+Closest order: 419, bucket id: 786
+Closest order: 481, bucket id: 902
+Closest order: 481, bucket id: 902
+Closest order: 354, bucket id: 664
+Closest order: 392, bucket id: 735
+Closest order: 453, bucket id: 850
+Closest order: 261, bucket id: 490
+Closest order: 534, bucket id: 1002
+Closest order: 510, bucket id: 957
+Closest order: 510, bucket id: 957
+Closest order: 490, bucket id: 919
+Closest order: 37, bucket id: 70
+Closest order: 422, bucket id: 792
+Closest order: 453, bucket id: 850
+Closest order: 531, bucket id: 996
+Closest order: 541, bucket id: 1015
+Closest order: 529, bucket id: 992
+Closest order: 536, bucket id: 1005
+Closest order: 530, bucket id: 994
+Closest order: 450, bucket id: 844
+Closest order: 191, bucket id: 359
+Closest order: 191, bucket id: 359
+Closest order: 191, bucket id: 359
+Closest order: 451, bucket id: 846
+Closest order: 451, bucket id: 846
+Closest order: 522, bucket id: 979
+Closest order: 520, bucket id: 975
+Closest order: 383, bucket id: 719
+Closest order: 315, bucket id: 591
+Closest order: 471, bucket id: 883
+Closest order: 405, bucket id: 760
+Closest order: 471, bucket id: 883
+Closest order: 471, bucket id: 883
+Closest order: 70, bucket id: 132
+Closest order: 50, bucket id: 95
+Closest order: 514, bucket id: 964
+Closest order: 452, bucket id: 848
+Closest order: 385, bucket id: 722
+Closest order: 487, bucket id: 913
+Closest order: 313, bucket id: 587
+Closest order: 313, bucket id: 587
+Closest order: 531, bucket id: 996
+Closest order: 11, bucket id: 22
+Closest order: 13, bucket id: 25
+Closest order: 162, bucket id: 305
+Closest order: 13, bucket id: 25
+Closest order: 30, bucket id: 57
+Closest order: 13, bucket id: 25
+Closest order: 13, bucket id: 25
+Closest order: 30, bucket id: 57
+Closest order: 13, bucket id: 25
+Closest order: 30, bucket id: 57
+Closest order: 30, bucket id: 57
+Closest order: 13, bucket id: 25
+Closest order: 30, bucket id: 57
+Closest order: 13, bucket id: 25
+Closest order: 23, bucket id: 44
+Closest order: 30, bucket id: 57
+Closest order: 30, bucket id: 57
+Closest order: 13, bucket id: 25
+Closest order: 30, bucket id: 57
+Closest order: 40, bucket id: 76
+Closest order: 50, bucket id: 95
+Closest order: 30, bucket id: 57
+Closest order: 30, bucket id: 57
+Closest order: 53, bucket id: 100
+Closest order: 53, bucket id: 100
+Closest order: 395, bucket id: 741
+Closest order: 71, bucket id: 134
+Closest order: 53, bucket id: 100
+Closest order: 53, bucket id: 100
+Closest order: 420, bucket id: 788
+Closest order: 194, bucket id: 364
+Closest order: 260, bucket id: 488
+Closest order: 260, bucket id: 488
+Closest order: 260, bucket id: 488
+Closest order: 420, bucket id: 788
+Closest order: 407, bucket id: 764
+Closest order: 12, bucket id: 23
+Closest order: 30, bucket id: 57
+Closest order: 41, bucket id: 78
+Closest order: 52, bucket id: 98
+Closest order: 52, bucket id: 98
+Closest order: 30, bucket id: 57
+Closest order: 92, bucket id: 173
+Closest order: 92, bucket id: 173
+Closest order: 78, bucket id: 147
+Closest order: 30, bucket id: 57
+Closest order: 260, bucket id: 488
+Closest order: 313, bucket id: 587
+Closest order: 69, bucket id: 130
+Closest order: 30, bucket id: 57
+Closest order: 205, bucket id: 385
+Closest order: 313, bucket id: 587
+Closest order: 441, bucket id: 827
+Closest order: 76, bucket id: 143
+Closest order: 330, bucket id: 619
+Closest order: 33, bucket id: 63
+Closest order: 92, bucket id: 173
+Closest order: 88, bucket id: 166
+Closest order: 330, bucket id: 619
+Closest order: 41, bucket id: 78
+Closest order: 5, bucket id: 10
+Closest order: 50, bucket id: 95
+Closest order: 330, bucket id: 619
+Closest order: 313, bucket id: 587
+Closest order: 330, bucket id: 619
+Closest order: 52, bucket id: 98
+Closest order: 50, bucket id: 95
+Closest order: 330, bucket id: 619
+Closest order: 10, bucket id: 20
+Closest order: 92, bucket id: 173
+Closest order: 68, bucket id: 128
+Closest order: 50, bucket id: 95
+Closest order: 221, bucket id: 415
+Closest order: 44, bucket id: 83
+Closest order: 5, bucket id: 10
+Closest order: 5, bucket id: 10
+Closest order: 92, bucket id: 173
+Closest order: 330, bucket id: 619
+Closest order: 50, bucket id: 95
+Closest order: 227, bucket id: 426
+Closest order: 313, bucket id: 587
+Closest order: 243, bucket id: 456
+Closest order: 489, bucket id: 917
+Closest order: 52, bucket id: 98
+Closest order: 271, bucket id: 509
+Closest order: 30, bucket id: 57
+Closest order: 5, bucket id: 10
+Closest order: 330, bucket id: 619
+Closest order: 69, bucket id: 130
+Closest order: 69, bucket id: 130
+Closest order: 68, bucket id: 128
+Closest order: 157, bucket id: 295
+Closest order: 52, bucket id: 98
+Closest order: 122, bucket id: 230
+Closest order: 92, bucket id: 173
+Closest order: 347, bucket id: 651
+Closest order: 347, bucket id: 651
+Closest order: 261, bucket id: 490
+Closest order: 330, bucket id: 619
+Closest order: 340, bucket id: 638
+Closest order: 50, bucket id: 95
+Closest order: 407, bucket id: 764
+Closest order: 354, bucket id: 664
+Closest order: 222, bucket id: 417
+Closest order: 168, bucket id: 316
+Closest order: 42, bucket id: 80
+Closest order: 5, bucket id: 10
+Closest order: 5, bucket id: 10
+Closest order: 354, bucket id: 664
+Closest order: 12, bucket id: 23
+Closest order: 5, bucket id: 10
+Closest order: 357, bucket id: 670
+Closest order: 354, bucket id: 664
+Closest order: 183, bucket id: 344
+Closest order: 81, bucket id: 153
+Closest order: 405, bucket id: 760
+Closest order: 92, bucket id: 173
+Closest order: 6, bucket id: 12
+Closest order: 422, bucket id: 792
+Closest order: 48, bucket id: 91
+Closest order: 6, bucket id: 12
+Closest order: 221, bucket id: 415
+Closest order: 5, bucket id: 10
+Closest order: 5, bucket id: 10
+Closest order: 221, bucket id: 415
+Closest order: 221, bucket id: 415
+Closest order: 221, bucket id: 415
+Closest order: 221, bucket id: 415
+Closest order: 261, bucket id: 490
+Closest order: 6, bucket id: 12
+Closest order: 69, bucket id: 130
+Closest order: 162, bucket id: 305
+Closest order: 95, bucket id: 179
+Closest order: 95, bucket id: 179
+Closest order: 271, bucket id: 509
+Closest order: 271, bucket id: 509
+Closest order: 271, bucket id: 509
+Closest order: 500, bucket id: 938
+Closest order: 126, bucket id: 237
+Closest order: 76, bucket id: 143
+Closest order: 18, bucket id: 35
+Closest order: 30, bucket id: 57
+Closest order: 92, bucket id: 173
+Closest order: 52, bucket id: 98
+Closest order: 81, bucket id: 153
+Closest order: 67, bucket id: 127
+Closest order: 116, bucket id: 218
+Closest order: 37, bucket id: 70
+Closest order: 92, bucket id: 173
+Closest order: 298, bucket id: 559
+Closest order: 92, bucket id: 173
+Closest order: 261, bucket id: 490
+Closest order: 302, bucket id: 567
+Closest order: 212, bucket id: 398
+Closest order: 174, bucket id: 327
+Closest order: 221, bucket id: 415
+Closest order: 191, bucket id: 359
+Closest order: 229, bucket id: 430
+Closest order: 191, bucket id: 359
+Closest order: 69, bucket id: 130
+Closest order: 318, bucket id: 597
+Closest order: 70, bucket id: 132
+Closest order: 244, bucket id: 458
+Closest order: 334, bucket id: 627
+Closest order: 69, bucket id: 130
+Closest order: 30, bucket id: 57
+Closest order: 261, bucket id: 490
+Closest order: 245, bucket id: 460
+[Done.]

@@ -127,3 +127,28 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+#LaTeX
+bmc_article.pdf
+bmc_article.dvi
+bmc_article.aux
+*.bak
+*.sav
+*.aux
+bmc_article_2col.pdf
+*.bbl
+bmc_article.bib
+bmc_article.blg
+bmc_article.synctex.gz
+._*
+hcase_pseudocode.dvi
+hcase_pseudocode.pdf
+hcase_pseudocode_standalone.pdf
+ms/
+ms
+ms*
+.DS_Store
+plots/main_text_edited_figures/
+plots/main_text_edited_figures/*
+GZK_hcase_ms_draft_*
+GZK_hcase_ms_draft_*.*
