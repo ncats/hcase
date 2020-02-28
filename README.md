@@ -1,3 +1,10 @@
+* Hilbert-Curve Assisted Structure Embedding (HCASE) Method
+
+This repository contains source code of the Hilbert-Curve Assisted Structure Embedding (HCASE) method. The method and a proof-of-concept study has been published as a preprint and can be accessed here: https://chemrxiv.org/articles/Hilbert-Curve_Assisted_Structure_Embedding_Method/11911296 .
+
+The repository contains the input and resultant files of the analysis enclosed by the manuscript.
+
+
 #### LICENSE Related Section #######
 
 * Links to licenses
