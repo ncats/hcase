@@ -23,19 +23,17 @@
 See: [https://conda.io/projects/conda/en/latest/user-guide/install/index.html](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
 
 
-* Install Git Large File Support (LFS)
-
-`git lfs install --skip-smudge`
 
 
+## Seeting Up Repository
 
-* Clone repository
+* Clone Repository
 
 `git clone https://github.com/ncats/hcase`
 
 
 
-* Pull Large files
+* Pull Large Files
 
 `cd hcase`
 
