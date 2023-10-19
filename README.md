@@ -1,12 +1,28 @@
-# This is the Source-Code and Data Repository of the Preprint of the HCASE Method
+# This is the Source Code and Data Repository of the HCASE Method
 
 Reference:
 
-[G. Zahoranszky-Kohalmi, K. K. Wan, A. G. Godfrey, Hilbert-Curve Assisted Structure Embedding Method, ChemRxiv, 28 February 2020, Version 1, 10.26434/chemrxiv.11911296.v1](https://chemrxiv.org/engage/chemrxiv/article-details/60c74874702a9bd9b418afaa)
+[G. Zahoranszky-Kohalmi, K. K. Wan, A. G. Godfrey, Hilbert-Curve Assisted Structure Embedding Method, ChemRxiv, 28 February 2020, Version 1, DOI: 10.26434/chemrxiv.11911296.v1](https://chemrxiv.org/engage/chemrxiv/article-details/60c74874702a9bd9b418afaa)
 
 
 
 # Process to Replicate the Analysis Enclosed in the HCASE Manuscript ######
+
+* Install Git Large File Supplort (GIT LFS)
+
+`git lfs install --skip-smudge`
+
+* Clone repository
+
+`git clone https://github.com/ncats/hcase`
+
+* Pull Large files
+
+
+`cd hcase`
+
+`git lfs pull` (this may take some time)
+
 
 * Script to execute all experiments
 
@@ -224,3 +240,5 @@ https://stackoverflow.com/questions/41274007/anaconda-export-environment-file
 https://stackoverflow.com/questions/43222407/how-to-list-package-versions-available-with-conda
 <BR>
 https://www.markdownguide.org/basic-syntax/
+<BR>
+https://stackoverflow.com/questions/62852772/error-when-getting-git-lfs-files-object-does-not-exist-on-the-server-404-obj
