@@ -1,0 +1,28 @@
+# Licenses of modules utilized in the source code
+
+Note, that these modules might come under different license types as compared to the license type of the HCASE source code (`HCASE/code` and `HCASE/aux_code`), which is MIT License.
+
+
+- SciKit-Learn Python module:	[ http://scikit-learn.org, https://github.com/scikit-learn/scikit-learn ]	3-Clause BSD license	[ https://github.com/scikit-learn/scikit-learn/blob/master/COPYING ]
+
+
+- SciPy library:	[ https://github.com/scipy/scipy ]	BSD 3-Clause "New" or "Revised" License	[ https://github.com/scipy/scipy/blob/master/LICENSE.txt ] 
+
+
+- RDKit	[ https://www.rdkit.org/ ]	BSD license	[ https://github.com/rdkit/rdkit/blob/master/license.txt ]
+
+
+- hilbertcurve.hilbertcurve:	[ https://github.com/galtay/hilbertcurve ]	MIT License	[ https://github.com/galtay/hilbertcurve/blob/develop/LICENSE ]
+
+
+- MatPlotLib:	[ https://github.com/matplotlib/matplotlib ]	Custom	[ https://github.com/matplotlib/matplotlib/blob/master/LICENSE/LICENSE ]
+
+
+- NumPy:	Custom	[ https://numpy.org/license.html ]
+
+
+- Pandas:	[ https://github.com/pandas-dev/pandas]	BSD 3-Clause License	[ https://github.com/pandas-dev/pandas/blob/master/LICENSE ] 
+
+
+- Seaborn:	[ https://github.com/mwaskom/seaborn ]	BSD 3-Clause "New" or "Revised" License	[ https://github.com/mwaskom/seaborn/blob/master/LICENSE ] 
+
