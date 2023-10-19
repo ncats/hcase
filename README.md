@@ -1,6 +1,6 @@
 # This is the Source Code and Data Repository of the HCASE Method
 
-Reference:
+**Reference**
 
 [G. Zahoranszky-Kohalmi, K. K. Wan, A. G. Godfrey, Hilbert-Curve Assisted Structure Embedding Method, ChemRxiv, 28 February 2020, Version 1, DOI: 10.26434/chemrxiv.11911296.v1](https://chemrxiv.org/engage/chemrxiv/article-details/60c74874702a9bd9b418afaa)
 
@@ -8,23 +8,42 @@ Reference:
 
 # Process to Replicate the Analysis Enclosed in the HCASE Manuscript ######
 
-* Install Git Large File Supplort (GIT LFS)
+## Prerequisites
+
+
+* *Git*
+
+* Git *Large File Support (LFS)*
 
 `git lfs install --skip-smudge`
+
+
+* *Conda* environment manager for Python
+
+See: [https://conda.io/projects/conda/en/latest/user-guide/install/index.html](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)
+
+
+* Install Git Large File Support (LFS)
+
+`git lfs install --skip-smudge`
+
+
 
 * Clone repository
 
 `git clone https://github.com/ncats/hcase`
 
-* Pull Large files
 
+
+* Pull Large files
 
 `cd hcase`
 
 `git lfs pull` (this may take some time)
 
 
-* Script to execute all experiments
+
+## Execute All Experiments
 
 `conda activate hcase`
 
@@ -33,7 +52,7 @@ Reference:
 `bash reproduce_HCASE_experiments.sh`
 
 
-Alternatively, you can execute each steps manually in this order:
+## Alternatively, Executing Individual Steps
 
 
 * Step 1: Create HCASE space using ChEMBL scaffolds
@@ -135,7 +154,7 @@ Run workflow `HCASE_Experiments_Aggregate.ipynb` .
 
 
 
-# LICENSE Related Section
+# License Related Section
 
 
 
@@ -183,21 +202,21 @@ KNIME workflows utilized in this study are contained in the `workflows/` directo
 * Links to licenses
 
 
-- MIT License: [ https://opensource.org/licenses/MIT ]
+- MIT License: [https://opensource.org/licenses/MIT](https://opensource.org/licenses/MIT)
 
-- Creative Commons Attribution-ShareAlike 3.0 Unported License: [https://creativecommons.org/licenses/by-sa/3.0/]
+- Creative Commons Attribution-ShareAlike 3.0 Unported License: [https://creativecommons.org/licenses/by-sa/3.0/](https://creativecommons.org/licenses/by-sa/3.0/)
 
-- Creative Commons Attribution 4.0 International Public License (CC-BY 4.0 International): [ https://creativecommons.org/licenses/by/4.0/legalcode.txt ]
+- Creative Commons Attribution 4.0 International Public License (CC-BY 4.0 International): [https://creativecommons.org/licenses/by/4.0/legalcode.txt](https://creativecommons.org/licenses/by/4.0/legalcode.txt)
 
-- GPL-2 License: [ https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html ]
+- GPL-2 License: [https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html](https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html)
 
-- GPL-3 License: [ https://www.gnu.org/licenses/gpl-3.0.en.html ]
+- GPL-3 License: [https://www.gnu.org/licenses/gpl-3.0.en.html](https://www.gnu.org/licenses/gpl-3.0.en.html)
 
-- Apache License 2.0: [ https://www.apache.org/licenses/LICENSE-2.0 ]
+- Apache License 2.0: [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
-- 3-Clause BSD license: [https://opensource.org/licenses/BSD-3-Clause, https://github.com/scikit-learn/scikit-learn/blob/master/COPYING]
+- 3-Clause BSD license: [https://opensource.org/licenses/BSD-3-Clause](https://opensource.org/licenses/BSD-3-Clause), [https://github.com/scikit-learn/scikit-learn/blob/master/COPYING](https://github.com/scikit-learn/scikit-learn/blob/master/COPYING)
 
-- KNIME: KNIME License Terms and Conditions [https://www.knime.com/downloads/full-license]
+- KNIME: KNIME License Terms and Conditions [https://www.knime.com/downloads/full-license](https://www.knime.com/downloads/full-license)
 
 
 
