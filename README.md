@@ -25,7 +25,7 @@ See: [https://conda.io/projects/conda/en/latest/user-guide/install/index.html](h
 
 
 
-## Seeting Up Repository
+## Setting Up Repository
 
 * Clone Repository
 
@@ -40,10 +40,16 @@ See: [https://conda.io/projects/conda/en/latest/user-guide/install/index.html](h
 `git lfs pull` (this may take some time)
 
 
+## Setting Up Conda Environment
+
+`conda env create -f code/environment.yml`  (this step needs to be done only once, if you don't already have the *hcase* conda environment)
+
+`conda activate hcase`  (this step is necessary everytime you want to run the HCASE method and/or the experiments)
+
+
 
 ## Execute All Experiments
 
-`conda activate hcase`
 
 `cd code/`
 
