@@ -6,7 +6,7 @@
 [G. Zahoranszky-Kohalmi, K. K. Wan, A. G. Godfrey, Hilbert-Curve Assisted Structure Embedding Method, ChemRxiv, 28 February 2020, Version 1, DOI: 10.26434/chemrxiv.11911296.v1](https://chemrxiv.org/engage/chemrxiv/article-details/60c74874702a9bd9b418afaa)
 
 
-<img src="plots/HCASE_Method.png" alt="HCASE Method" style="height: 800px; width:600px;"/>
+<img src="plots/HCASE_Method.png" alt="HCASE Method" style="height: 1000px; width:600px;"/>
 
 
 
