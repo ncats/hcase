@@ -284,8 +284,7 @@ def embed(df_space, df_structures, n_dim):
 
     print('[*] Number of input structures: %d' % (df_structures.shape[0]))
     df_structures = df_structures[df_structures['sk_struct'] != 'NA']
-    print('[*] Number of structures for which scaffold_key was generated: %d' %
-          (df_structures.shape[0]))
+    print('[*] Number of structures for which scaffold_key was generated: %d' % (df_structures.shape[0]))
     # df3 = df_space.merge (df_structures, on = 'jk', how = 'inner')
 
     # df = df3.copy()
