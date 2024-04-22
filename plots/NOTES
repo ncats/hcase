@@ -233,3 +233,10 @@ plots/main_text_edited_figures/GraphicalAbstract.xcf		Derivative work of DrugBan
 plots/Algorithm_a.png		Derivative work of DrugBank and ChEMBL scaffolds (ChEMBL v24_1) datasets.
 plots/Algorithm_b.png		Derivative work of DrugBank and ChEMBL scaffolds (ChEMBL v24_1) datasets.
 plots/Algorithm_c.png		Derivative work of DrugBank and ChEMBL scaffolds (ChEMBL v24_1) datasets.
+
+
+plots/si_rank_corr_canvass_emb_hcase_chembl_24_1_bms_dim_2.png  Derivative work of all input datasets.
+plots/si_rank_corr_canvass_emb_hcase_natprod_hm.png  Derivative work of all input datasets.
+plots/si_rank_corr_drugs_emb_hcase_chembl.png  Derivative work of all input datasets.
+plots/si_rank_corr_drugs_emb_hcase_natprod_hm.png  Derivative work of all input datasets.
+
