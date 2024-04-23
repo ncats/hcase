@@ -72,6 +72,8 @@ Note, that some of the utilized resources might come under different liences of 
 
 `code/HCASE_Experiments_Chebyshev.ipynb`  Derivative work of all input datasets.
 
+`code/HCASE_Experiments_Chebyshev_Kendall.ipynb`  Derivative work of all input datasets.
+
 `code/HCASE_Experiments_Cherry_Picked_Scaffolds_in_Reduced_HCASE_Space.ipynb` Derivative work of CANVASS and ChEMBL v24.1 datasets.
 
 `code/HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb`    Derivative work of CANVASS and ChEMBL v24.1 datasets.
@@ -97,3 +99,7 @@ Note, that some of the utilized resources might come under different liences of 
 `code/HCASE_Plot_Compare_HCASE_ChEMBL_NatProd_Embeddings_MainText.ipynb`  Derivative work of all input datasets.
 
 `code/HCASE_Plot_tSNE_MainText.ipynb` Derivative work of DrugBank dataset.
+
+`code/hcase_style.xml`	HCASE style for HCASE canyon analysis in Cytoscape.	MIT License	[ https://github.com/galtay/hilbertcurve/blob/develop/LICENSE ]
+
+`code/HCASE_Experimtent_HCASE_Preserve_Distance.ipynb`  Derivative work of all input datasets.
