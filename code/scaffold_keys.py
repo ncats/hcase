@@ -110,7 +110,6 @@
 # Ref: https://www.daylight.com/meetings/summerschool01/course/basics/smarts.html
 
 
-
 import rdkit
 from rdkit import Chem
 from rdkit.Chem import rdmolops
@@ -126,33 +125,33 @@ heteroatoms_nr = '#3,#4,#5,#7,#8,#9,#12,#13,#14,#15,#16,#17,#25,#26,#27,#28,#29,
 heteroatoms_symbol = 'Li,Be,B,N,O,F,Mg,Al,Si,P,S,Cl,Zn,As,Se,Br,Te,I,Pt,Hg,Mn,Fe,Co,Ni,Cu,Ga,Ge,Rh,Pd,Ag,Cd,Sn'
 heteroatoms_reduced_nr = '#3,#4,#5,#9,#12,#13,#14,#15,#17,#25,#26,#27,#28,#29,#30,#31,#32,#33,#34,#35,#45,#46,#47,#48,#50,#52,#53,#78,#80'
 
-def smiles2bmscaffold (smiles):
+
+def smiles2bmscaffold(smiles):
     if smiles == 'NA':
         bms = 'NA'
     else:
         try:
             mol = Chem.MolFromSmiles(smiles)
-            #print (Chem.MolToSmiles(mol))
+            # print (Chem.MolToSmiles(mol))
             bms = MurckoScaffold.GetScaffoldForMol(mol)
             bms = Chem.MolToSmiles(bms)
-    
+
         except:
             bms = 'NA'
-    
+
     if len(bms) == 0:
         bms = 'NA'
-    
+
     return (bms)
 
 
-
-def smiles2inchikey (smiles):
+def smiles2inchikey(smiles):
     if smiles == 'NA':
         inchi = 'NA'
     else:
         try:
             mol = Chem.MolFromSmiles(smiles)
-            inchi = Chem.MolToInchi (mol)
+            inchi = Chem.MolToInchi(mol)
         except:
             inchi = 'NA'
 
@@ -160,32 +159,34 @@ def smiles2inchikey (smiles):
         inchikey = 'NA'
     else:
         try:
-            inchikey = Chem.InchiToInchiKey (inchi)
+            inchikey = Chem.InchiToInchiKey(inchi)
         except:
             inchikey = 'NA'
-    
-    return (inchikey)    
+
+    return (inchikey)
 
 
 # 1    number of ring and linker atoms    RL    20.029    7.556
-def sk_num_ring_and_linker_atoms (mol):
-    smiles = Chem.MolToSmiles (mol).replace('=', '-')
-    bms = smiles2bmscaffold (smiles)
-    bms = Chem.MolFromSmiles (bms)
+def sk_num_ring_and_linker_atoms(mol):
+    smiles = Chem.MolToSmiles(mol).replace('=', '-')
+    bms = smiles2bmscaffold(smiles)
+    bms = Chem.MolFromSmiles(bms)
 
     return (bms.GetNumAtoms())
 
+
 # 2    number of linker atoms    L    2.518    3.481
-def sk_num_linker_atoms (mol):
-    smiles = Chem.MolToSmiles (mol).replace('=', '-')
-    bms = smiles2bmscaffold (smiles)
-    bms = Chem.MolFromSmiles (bms)
+def sk_num_linker_atoms(mol):
+    smiles = Chem.MolToSmiles(mol).replace('=', '-')
+    bms = smiles2bmscaffold(smiles)
+    bms = Chem.MolFromSmiles(bms)
 
     patt = Chem.MolFromSmarts('[!R]')
     pm = bms.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
+
 
 # 3    number of linker bonds    L    3.993    3.897
 def sk_num_linker_bonds(mol):
@@ -196,7 +197,6 @@ def sk_num_linker_bonds(mol):
     ap = bms.GetSubstructMatches(patt)  # ap: atom pairs
 
     return (len(ap))
-    
 
     """
     Alternative to sk_num_linker_bonds(mol):
@@ -213,72 +213,72 @@ def sk_num_linker_bonds(mol):
     return (nr_all_bonds - nr_ring_bonds)
     """
 
+
 # 4    number of rings         3.348    3.156
-def sk_num_rings (mol):
-    nr = Chem.rdmolops.GetSSSR(mol)    
-    
+def sk_num_rings(mol):
+    nr = len(Chem.rdmolops.GetSSSR(mol))
     return (nr)
+
 
 # 5    number of spiro atoms    R    0.031    0.193
 def sk_num_spiro_atoms(mol):
-    nr = Chem.rdMolDescriptors.CalcNumSpiroAtoms(mol) 
-    
+    nr = Chem.rdMolDescriptors.CalcNumSpiroAtoms(mol)
+
     return (nr)
+
 
 # 6    size of the largest ring    R    6.241    1.905
 def sk_size_largest_ring(mol):
     rings = Chem.rdmolops.GetSymmSSSR(mol)
     max_size = 0
-    for i in range (len(rings)):
+    for i in range(len(rings)):
         rs = len(list(rings[i]))
         if rs > max_size:
             max_size = rs
-    
+
     return (max_size)
 
-# 7    number of bonds in fully conjugated rings    R    13.824    6.201
 
-def is_ring_fully_conjugated (ring, suppl):
+# 7    number of bonds in fully conjugated rings    R    13.824    6.201
+def is_ring_fully_conjugated(ring, suppl):
     first_idx_conj = -1
     first = True
-    
-    
+
     for i in range(len(ring)):
         atom_idx = ring[i]
-        atom_conj_grp_idx = Chem.ResonanceMolSupplier.GetAtomConjGrpIdx (suppl, atom_idx)
-        
+        atom_conj_grp_idx = Chem.ResonanceMolSupplier.GetAtomConjGrpIdx(suppl, atom_idx)
+
         if first:
             first_idx_conj = atom_conj_grp_idx
-            
+
             # If atom is not in conjugated system, the conjugated group index is
             # supposed to be -1, however, I experienced this value to be a large
             # positive integer instead of -1 when doing a negative control (atom
             # not in conjugated system). Therefore both a large value and -1 are
-            # checked as indication of atom not being part of conjugated system. 
+            # checked as indication of atom not being part of conjugated system.
 
             if first_idx_conj > 99999 or first_idx_conj == -1:
                 return (False)
-           
+
             first = False
-        
+
         else:
             if atom_conj_grp_idx != first_idx_conj:
                 return (False)
-    
-        
+
     return (True)
 
 
-def get_num_multiple_bond_in_ring (mol, ring):
+def get_num_multiple_bond_in_ring(mol, ring):
     atom_i = -1
     atom_j = -1
     bond = None
     nr_multiple_bonds = 0
     multiple_bond_types = [2, 3, 12]
-    
+
     for i in range(len(ring)):
         atom_i = ring[i]
-        
+
         for j in range(0, i):
             atom_j = ring[j]
             bond = mol.GetBondBetweenAtoms(atom_i, atom_j)
@@ -286,9 +286,9 @@ def get_num_multiple_bond_in_ring (mol, ring):
                 bond_type = Chem.Bond.GetBondType(bond)
                 if int(bond_type) in multiple_bond_types:
                     nr_multiple_bonds += 1
-                    
+
     return (nr_multiple_bonds)
-                
+
 
 def sk_conjugation(mol):
     extracted_rings = []
@@ -296,34 +296,35 @@ def sk_conjugation(mol):
     nr_multiple_bonds_infcr = 0    # infcr: in not fully conjugated ring
     suppl = Chem.ResonanceMolSupplier(mol)
     rings = Chem.GetSymmSSSR(mol)
-    
-    for i in range (len(rings)):
+
+    for i in range(len(rings)):
         extracted_rings.append(list(rings[i]))
-    
+
     for ring in extracted_rings:
 
-        if is_ring_fully_conjugated (ring, suppl):
+        if is_ring_fully_conjugated(ring, suppl):
             nr_conjugated_rings += 1
         else:
-            nr_multiple_bonds_infcr += get_num_multiple_bond_in_ring (mol, ring)
-  
+            nr_multiple_bonds_infcr += get_num_multiple_bond_in_ring(mol, ring)
+
     return ((nr_conjugated_rings, nr_multiple_bonds_infcr))
-    
+
 
 # 8    number of multiple bonds in not fully conjugated rings    R    0.112    0.383
 # Implemented as part of Rule 7 above.
 
 
 # 9    number of heteroatoms in rings    R    2.177    1.640
-def sk_num_heteroatoms_in_rings (mol):
+def sk_num_heteroatoms_in_rings(mol):
     patt = Chem.MolFromSmarts('[*]~[' + heteroatoms_nr + ']~[*]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
 
+
 # 10    number of heteroatoms other than N, S, O in rings    R    0.003    0.061
-def sk_num_heteroatoms_in_rings_no_N_O_S (mol):
+def sk_num_heteroatoms_in_rings_no_N_O_S(mol):
     patt = Chem.MolFromSmarts('[*]~[' + heteroatoms_reduced_nr + ']~[*]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
@@ -332,7 +333,7 @@ def sk_num_heteroatoms_in_rings_no_N_O_S (mol):
 
 
 # 11    number of S ring atoms    R    0.143    0.388
-def sk_num_S_in_rings (mol):
+def sk_num_S_in_rings(mol):
     patt = Chem.MolFromSmarts('[*]~[#16]~[*]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
@@ -341,23 +342,25 @@ def sk_num_S_in_rings (mol):
 
 
 # 12    number of O ring atoms    R    0.310    0.703
-def sk_num_O_in_rings (mol):
+def sk_num_O_in_rings(mol):
     patt = Chem.MolFromSmarts('[*]~[#8]~[*]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
 
+
 # 13    number of N ring atoms    R    1.721    1.507
-def sk_num_N_in_rings (mol):
+def sk_num_N_in_rings(mol):
     patt = Chem.MolFromSmarts('[*]~[#7]~[*]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
 
+
 # 14    number of heteroatoms    A    4.248    2.921
-def sk_num_heteroatoms (mol):
+def sk_num_heteroatoms(mol):
     patt = Chem.MolFromSmarts('[' + heteroatoms_nr + ']')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
@@ -366,7 +369,7 @@ def sk_num_heteroatoms (mol):
 
 
 # 15    number of heteroatoms other than N, S, O    A    0.009    0.131
-def sk_num_heteroatoms_no_N_S_O (mol):
+def sk_num_heteroatoms_no_N_S_O(mol):
     patt = Chem.MolFromSmarts('[' + heteroatoms_reduced_nr + ']')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
@@ -374,32 +377,31 @@ def sk_num_heteroatoms_no_N_S_O (mol):
     return (nr)
 
 
-
 # 16    number of S atoms    A    0.289    0.540
-def sk_num_S_atoms (mol):
+def sk_num_S_atoms(mol):
     patt = Chem.MolFromSmarts('[#16]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
 
+
 # 17    number of O atoms    A    1.603    1.695
-def sk_num_O_atoms (mol):
+def sk_num_O_atoms(mol):
     patt = Chem.MolFromSmarts('[#8]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
-    
+
     return (nr)
 
 
 # 18    number of N atoms    A    2.347    1.789
-def sk_num_N_atoms (mol):
+def sk_num_N_atoms(mol):
     patt = Chem.MolFromSmarts('[#7]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
-
 
 
 # 19    number of multiple linker bonds    A    0.109    0.351
@@ -409,22 +411,25 @@ def sk_num_multiple_linker_bonds(mol):
     bms = smiles2bmscaffold(smiles)
     bms = Chem.MolFromSmiles(bms)
     patt = Chem.MolFromSmarts('[D3,D4;!R][!#1]')
-    ap = bms.GetSubstructMatches(patt)  #ap: atom pairs
+    ap = bms.GetSubstructMatches(patt)  # ap: atom pairs
 
     return (len(ap))
-    
+
 
 # 20    count of two adjacent heteroatoms    AO    0.575    1.162
-def sk_num_2_adjacent_heteroatoms (mol):
-    patt = Chem.MolFromSmarts('[' + heteroatoms_nr + '][' + heteroatoms_nr + ']')
+def sk_num_2_adjacent_heteroatoms(mol):
+    patt = Chem.MolFromSmarts(
+        '[' + heteroatoms_nr + '][' + heteroatoms_nr + ']')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
 
+
 # 21    count of 3 adjacent heteroatoms    AO    0.350    1.169
-def sk_num_3_adjacent_heteroatoms (mol):
-    patt = Chem.MolFromSmarts('[' + heteroatoms_nr + '][' + heteroatoms_nr + '][' + heteroatoms_nr + ']')
+def sk_num_3_adjacent_heteroatoms(mol):
+    patt = Chem.MolFromSmarts(
+        '[' + heteroatoms_nr + '][' + heteroatoms_nr + '][' + heteroatoms_nr + ']')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
@@ -432,8 +437,9 @@ def sk_num_3_adjacent_heteroatoms (mol):
 
 
 # 22    count of 2 heteroatoms separated by a single carbon    AO    1.804    1.953
-def sk_num_2_heteroatoms_separated_by_single_carbon (mol):
-    patt = Chem.MolFromSmarts('[' + heteroatoms_nr + '][#6][' + heteroatoms_nr + ']')
+def sk_num_2_heteroatoms_separated_by_single_carbon(mol):
+    patt = Chem.MolFromSmarts(
+        '[' + heteroatoms_nr + '][#6][' + heteroatoms_nr + ']')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
@@ -441,8 +447,9 @@ def sk_num_2_heteroatoms_separated_by_single_carbon (mol):
 
 
 # 23    count of 2 heteroatoms separated by 2 carbons    AO    1.505    2.564
-def sk_num_2_heteroatoms_separated_by_two_carbons (mol):
-    patt = Chem.MolFromSmarts('[' + heteroatoms_nr + '][#6][#6][' + heteroatoms_nr + ']')
+def sk_num_2_heteroatoms_separated_by_two_carbons(mol):
+    patt = Chem.MolFromSmarts(
+        '[' + heteroatoms_nr + '][#6][#6][' + heteroatoms_nr + ']')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
@@ -450,18 +457,21 @@ def sk_num_2_heteroatoms_separated_by_two_carbons (mol):
 
 
 # 24    number of double bonds with at least one heteroatom    AO    1.235    1.433
-def sk_num_double_bonds_with_at_least_one_heteroatom (mol):
-    patt = Chem.MolFromSmarts('[' + heteroatoms_nr + ']=[' + heteroatoms_nr + ']')
+def sk_num_double_bonds_with_at_least_one_heteroatom(mol):
+    patt = Chem.MolFromSmarts(
+        '[' + heteroatoms_nr + ']=[' + heteroatoms_nr + ']')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
 
+
 # 25    number of heteroatoms adjacent to a double (nonaromatic) bond    AO    1.439    1.861
-def sk_num_heteroatoms_adjacent_to_non_aromatic_double_bond (mol):
-    patt = Chem.MolFromSmarts('[C,' + heteroatoms_symbol + ']=[C,' + heteroatoms_symbol + '][' + heteroatoms_nr + ']')
+def sk_num_heteroatoms_adjacent_to_non_aromatic_double_bond(mol):
+    patt = Chem.MolFromSmarts(
+        '[C,' + heteroatoms_symbol + ']=[C,' + heteroatoms_symbol + '][' + heteroatoms_nr + ']')
     # Maybe?:
-    #patt = Chem.MolFromSmarts('[!a]=[!a][#3,#4,#5,#7,#8,#9,#12,#13,#14,#15,#16,#17,#30,#33,#34,#35,#52,#53,#78,#80]')
+    # patt = Chem.MolFromSmarts('[!a]=[!a][#3,#4,#5,#7,#8,#9,#12,#13,#14,#15,#16,#17,#30,#33,#34,#35,#52,#53,#78,#80]')
 
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
@@ -470,51 +480,60 @@ def sk_num_heteroatoms_adjacent_to_non_aromatic_double_bond (mol):
 
 
 # 26    count of pairs of conjugated double (nonaromatic) bonds    AO    0.094    0.380
-def sk_num_conjugated_pairs_of_double_bonds_nonaromatic (mol):
+def sk_num_conjugated_pairs_of_double_bonds_nonaromatic(mol):
     patt = Chem.MolFromSmarts('[!a]=[!a][!a]=[!a]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
 
+
 # 27    count of pairs of adjacent branched atoms    AO    2.860    2.320
-def sk_num_pairs_of_adjacent_branched_atoms (mol):
-    patt = Chem.MolFromSmarts('[$([!#1]([!#1])([!#1])[!#1])][$([!#1]([!#1])([!#1])[!#1])]')
+def sk_num_pairs_of_adjacent_branched_atoms(mol):
+    patt = Chem.MolFromSmarts(
+        '[$([!#1]([!#1])([!#1])[!#1])][$([!#1]([!#1])([!#1])[!#1])]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
+
 
 # 28    count of branched atoms separated by a single nonbranched atom    AO    1.504    1.467
-def sk_num_branched_atoms_separated_by_single_nonbranched_atom (mol):
-    patt = Chem.MolFromSmarts('[$([!#1]([!#1])([!#1])[!#1])][!#1D2][$([!#1]([!#1])([!#1])[!#1])]')
+def sk_num_branched_atoms_separated_by_single_nonbranched_atom(mol):
+    patt = Chem.MolFromSmarts(
+        '[$([!#1]([!#1])([!#1])[!#1])][!#1D2][$([!#1]([!#1])([!#1])[!#1])]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
+
 
 # 29    count of 3 adjacent branched atoms    AO    1.734    2.591
-def sk_num_three_of_adjacent_branched_atoms (mol):
-    patt = Chem.MolFromSmarts('[$([!#1]([!#1])([!#1])[!#1])][$([!#1]([!#1])([!#1])[!#1])][$([!#1]([!#1])([!#1])[!#1])]')
+def sk_num_three_of_adjacent_branched_atoms(mol):
+    patt = Chem.MolFromSmarts(
+        '[$([!#1]([!#1])([!#1])[!#1])][$([!#1]([!#1])([!#1])[!#1])][$([!#1]([!#1])([!#1])[!#1])]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
+
 
 # 30    count of branched atoms separated by any 2 atoms    AO    4.294    4.409
-def sk_num_branched_atoms_separated_by_any_2_atoms (mol):
-    patt = Chem.MolFromSmarts('[$([!#1]([!#1])([!#1])[!#1])][*][*][$([!#1]([!#1])([!#1])[!#1])]')
+def sk_num_branched_atoms_separated_by_any_2_atoms(mol):
+    patt = Chem.MolFromSmarts(
+        '[$([!#1]([!#1])([!#1])[!#1])][*][*][$([!#1]([!#1])([!#1])[!#1])]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
 
     return (nr)
 
+
 # 31    number of exocyclic and exolinker atoms    !R, !L    1.170    1.425
-def sk_num_exocyclic_and_exolinker_atoms (mol):
-    smiles = Chem.MolToSmiles (mol)
-    bms = smiles2bmscaffold (smiles)
-    bms = Chem.MolFromSmiles (bms)
-    
+def sk_num_exocyclic_and_exolinker_atoms(mol):
+    smiles = Chem.MolToSmiles(mol)
+    bms = smiles2bmscaffold(smiles)
+    bms = Chem.MolFromSmiles(bms)
+
     patt_exocyclic = Chem.MolFromSmarts('[R]=[!#1;!R]')
     patt_exolinker = Chem.MolFromSmarts('[*][!R](=[!#1;!R])[*]')
 
@@ -524,12 +543,11 @@ def sk_num_exocyclic_and_exolinker_atoms (mol):
     pm_exolinker = bms.GetSubstructMatches(patt_exolinker)
     nr_exolinker = len(pm_exolinker)
 
-    
     return (nr_exoclyclic + nr_exolinker)
 
 
 # 32    number of heteroatoms with more than 2 bonds
-def sk_num_heteroatoms_with_more_than_2_bonds (mol):
+def sk_num_heteroatoms_with_more_than_2_bonds(mol):
     patt = Chem.MolFromSmarts('[' + heteroatoms_nr + ';H0;!X1&!X2]')
     pm = mol.GetSubstructMatches(patt)
     nr = len(pm)
@@ -537,76 +555,75 @@ def sk_num_heteroatoms_with_more_than_2_bonds (mol):
     return (nr)
 
 
-def generate_scaffold_key (mol):
+def generate_scaffold_key(mol):
     sc_keys = []
-    
-    sc_keys.append (sk_num_ring_and_linker_atoms (mol))
-    sc_keys.append (sk_num_linker_atoms (mol))
-    sc_keys.append (sk_num_linker_bonds(mol))
-    sc_keys.append (sk_num_rings (mol))
-    sc_keys.append (sk_num_spiro_atoms(mol))
-    sc_keys.append (sk_size_largest_ring(mol))
-    
+
+    sc_keys.append(sk_num_ring_and_linker_atoms(mol))
+    sc_keys.append(sk_num_linker_atoms(mol))
+    sc_keys.append(sk_num_linker_bonds(mol))
+    sc_keys.append(sk_num_rings(mol))
+    sc_keys.append(sk_num_spiro_atoms(mol))
+    sc_keys.append(sk_size_largest_ring(mol))
+
     res = sk_conjugation(mol)
-    sc_keys.append (res[0])
-    sc_keys.append (res[1])
-    
-    sc_keys.append (sk_num_heteroatoms_in_rings (mol))
-    sc_keys.append (sk_num_heteroatoms_in_rings_no_N_O_S (mol))
-    sc_keys.append (sk_num_S_in_rings (mol))
-    sc_keys.append (sk_num_O_in_rings (mol))
-    sc_keys.append (sk_num_N_in_rings (mol))
-    sc_keys.append (sk_num_heteroatoms (mol))
-    sc_keys.append (sk_num_heteroatoms_no_N_S_O (mol))
-    sc_keys.append (sk_num_S_atoms (mol))
-    sc_keys.append (sk_num_O_atoms (mol))
-    sc_keys.append (sk_num_N_atoms (mol))
-    sc_keys.append (sk_num_multiple_linker_bonds(mol))
-    sc_keys.append (sk_num_2_adjacent_heteroatoms (mol))
-    sc_keys.append (sk_num_3_adjacent_heteroatoms (mol))
-    sc_keys.append (sk_num_2_heteroatoms_separated_by_single_carbon (mol))
-    sc_keys.append (sk_num_2_heteroatoms_separated_by_two_carbons (mol))
-    sc_keys.append (sk_num_double_bonds_with_at_least_one_heteroatom (mol))
-    sc_keys.append (sk_num_heteroatoms_adjacent_to_non_aromatic_double_bond (mol))
-    sc_keys.append (sk_num_conjugated_pairs_of_double_bonds_nonaromatic (mol))
-    sc_keys.append (sk_num_pairs_of_adjacent_branched_atoms (mol))
-    sc_keys.append (sk_num_branched_atoms_separated_by_single_nonbranched_atom (mol))
-    sc_keys.append (sk_num_three_of_adjacent_branched_atoms (mol))
-    sc_keys.append (sk_num_branched_atoms_separated_by_any_2_atoms (mol))
-    sc_keys.append (sk_num_exocyclic_and_exolinker_atoms (mol))
-    sc_keys.append (sk_num_branched_atoms_separated_by_any_2_atoms (mol))
-    
+    sc_keys.append(res[0])
+    sc_keys.append(res[1])
+
+    sc_keys.append(sk_num_heteroatoms_in_rings(mol))
+    sc_keys.append(sk_num_heteroatoms_in_rings_no_N_O_S(mol))
+    sc_keys.append(sk_num_S_in_rings(mol))
+    sc_keys.append(sk_num_O_in_rings(mol))
+    sc_keys.append(sk_num_N_in_rings(mol))
+    sc_keys.append(sk_num_heteroatoms(mol))
+    sc_keys.append(sk_num_heteroatoms_no_N_S_O(mol))
+    sc_keys.append(sk_num_S_atoms(mol))
+    sc_keys.append(sk_num_O_atoms(mol))
+    sc_keys.append(sk_num_N_atoms(mol))
+    sc_keys.append(sk_num_multiple_linker_bonds(mol))
+    sc_keys.append(sk_num_2_adjacent_heteroatoms(mol))
+    sc_keys.append(sk_num_3_adjacent_heteroatoms(mol))
+    sc_keys.append(sk_num_2_heteroatoms_separated_by_single_carbon(mol))
+    sc_keys.append(sk_num_2_heteroatoms_separated_by_two_carbons(mol))
+    sc_keys.append(sk_num_double_bonds_with_at_least_one_heteroatom(mol))
+    sc_keys.append(sk_num_heteroatoms_adjacent_to_non_aromatic_double_bond(mol))
+    sc_keys.append(sk_num_conjugated_pairs_of_double_bonds_nonaromatic(mol))
+    sc_keys.append(sk_num_pairs_of_adjacent_branched_atoms(mol))
+    sc_keys.append(sk_num_branched_atoms_separated_by_single_nonbranched_atom(mol))
+    sc_keys.append(sk_num_three_of_adjacent_branched_atoms(mol))
+    sc_keys.append(sk_num_branched_atoms_separated_by_any_2_atoms(mol))
+    sc_keys.append(sk_num_exocyclic_and_exolinker_atoms(mol))
+    sc_keys.append(sk_num_branched_atoms_separated_by_any_2_atoms(mol))
+
     return (sc_keys)
 
 
-
-def smiles2scaffoldkey (smiles, trailing_inchikey=False):
+def smiles2scaffoldkey(smiles, trailing_inchikey=False):
     """
         Original rule-set of Scaffold Keys does not include inchikey, but I included it an optional argument, which can help deal with collisions (scaffolds of identical Scaffold Keys).
     """
     sk = ''
     sc_keys = []
     try:
-        mol = Chem.MolFromSmiles (smiles)
-        bms = smiles2bmscaffold (smiles)
+        mol = Chem.MolFromSmiles(smiles)
+        bms = smiles2bmscaffold(smiles)
         bms = Chem.MolFromSmiles(bms)
         inchikey = smiles2inchikey(smiles)
         sc_keys = generate_scaffold_key(mol)
-        
-        for i in range (len(sc_keys)):
+
+        for i in range(len(sc_keys)):
             sk += (str(sc_keys[i]) + ' ')
 
-      
         if trailing_inchikey:
             sk += inchikey
 
         sk = sk.strip()
-    
+
     except:
-        print ('[WARNING] SMILES: %s cannot be processed by RDKit.' % (smiles))
+        # print('[WARNING] SMILES: %s cannot be processed by RDKit.' % (smiles))
         sk = 'NA'
 
     return (sk)
+
 
 def onestring(scaffold_key, has_inchikey=False):
     """
@@ -620,7 +637,7 @@ def onestring(scaffold_key, has_inchikey=False):
         tmp2 = tmp[:-1]
     else:
         tmp2 = tmp
-    
+
     for i in range(len(tmp2)):
         dim_val = tmp2[i]
         if (len(dim_val) == 1):
@@ -630,21 +647,22 @@ def onestring(scaffold_key, has_inchikey=False):
         elif (len(dim_val) == 3):
             dim_val = '0' + dim_val
         elif (len(dim_val) > 4):
-            print ('[ERROR]: Current implementation does not handle values greater than 9999, please contact the developer. Terminating ...')
-        
+            print('[ERROR]: Current implementation does not handle values greater than 9999, please contact the developer. Terminating ...')
+
         res += dim_val
     res = res.strip()
-    
+
     if has_inchikey:
         res += tmp[(len(tmp) - 1)]
 
     return (res)
-        
-def sk_distance (sk1, sk2):
+
+
+def sk_distance(sk1, sk2):
     distance = 0.0
 
-    tmp1 = sk1.split (' ')
-    tmp2 = sk2.split (' ')
+    tmp1 = sk1.split(' ')
+    tmp2 = sk2.split(' ')
 
     # If inchikey is trailing the scaffold key then remove it:
     if len(tmp1) == 32:
@@ -652,7 +670,7 @@ def sk_distance (sk1, sk2):
     elif len(tmp1) == 33:
         tmp1 = tmp1[:-1]
     else:
-        print ('[ERROR:] Length of scaffold key is neither 32 nor 33 (inchikey-appended). Problematic scaffold key: %s. Terminating' % (sk1))
+        print('[ERROR:] Length of scaffold key is neither 32 nor 33 (inchikey-appended). Problematic scaffold key: %s. Terminating' % (sk1))
 
     # If inchikey is trailing the scaffold key then remove it:
     if len(tmp2) == 32:
@@ -660,21 +678,20 @@ def sk_distance (sk1, sk2):
     elif len(tmp2) == 33:
         tmp2 = tmp2[:-1]
     else:
-        print ('[ERROR:] Length of scaffold key is neither 32 nor 33 (inchikey-appended). Problematic scaffold key: %s. Terminating' % (sk2))
+        print('[ERROR:] Length of scaffold key is neither 32 nor 33 (inchikey-appended). Problematic scaffold key: %s. Terminating' % (sk2))
 
     sk_length = len(tmp1)
-    
-    for i in range (sk_length):
+
+    for i in range(sk_length):
         n_1 = int(tmp1[i])
         n_2 = int(tmp2[i])
-        distance += (math.pow (math.fabs (n_1 - n_2), 1.5)) / (i + 1)
-    
+        distance += (math.pow(math.fabs(n_1 - n_2), 1.5)) / (i + 1)
+
     return (distance)
 
-#smiles = 'c1ccccc1OCCCc2ccccc2'
-#smiles = 'C=C(CC1CCCCC1)C1=C2NCOC3C(=C)C(=O)SC(N=C1)=C23'
-#sk = smiles2scaffoldkey (smiles, trailing_inchikey = True)
-#print(sk)
+# smiles = 'c1ccccc1OCCCc2ccccc2'
+# smiles = 'C=C(CC1CCCCC1)C1=C2NCOC3C(=C)C(=O)SC(N=C1)=C23'
+# sk = smiles2scaffoldkey (smiles, trailing_inchikey = True)
+# print(sk)
 
-#print (onestring (sk, has_inchikey = True))
-
+# print (onestring (sk, has_inchikey = True))
