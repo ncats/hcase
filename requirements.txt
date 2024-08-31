@@ -1,0 +1,5 @@
+pandas
+rdkit
+hilbertcurve
+
+jupyter
