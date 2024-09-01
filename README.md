@@ -1,21 +1,30 @@
 # This is the Source Code and Data Repository of the HCASE Method
 
 
-**Cite Us**
+## Cite Us
 
-Zahoránszky-Kőhalmi, G., Wan, K.K. & Godfrey, A.G. Hilbert-curve assisted structure embedding method. J Cheminform 16, 87 (2024). DOI:[https://doi.org/10.1186/s13321-024-00850-z](https://doi.org/10.1186/s13321-024-00850-z)
-
-
-
-
-<img src="plots/HCASE_Method.png" alt="HCASE Method" style="height: 1000px; width:600px;"/>
+Zahoránszky-Kőhalmi, G., Wan, K.K. & Godfrey, A.G. Hilbert-curve assisted structure embedding method. *J Cheminform* **16**, 87 (2024). DOI: [10.1186/s13321-024-00850-z](https://doi.org/10.1186/s13321-024-00850-z)
 
 **Preprint**
 
-[G. Zahoranszky-Kohalmi, K. K. Wan, A. G. Godfrey, Hilbert-Curve Assisted Structure Embedding Method, ChemRxiv, 28 February 2020, Version 1, DOI: 10.26434/chemrxiv.11911296.v1](https://chemrxiv.org/engage/chemrxiv/article-details/60c74874702a9bd9b418afaa)
+G. Zahoranszky-Kohalmi, K. K. Wan, A. G. Godfrey, Hilbert-Curve Assisted Structure Embedding Method, ChemRxiv, 28 February 2020, Version 1, DOI: [10.26434/chemrxiv.11911296.v1](https://chemrxiv.org/engage/chemrxiv/article-details/60c74874702a9bd9b418afaa)
+
+<BR>
+
+<img src="plots/HCASE_Method.png" alt="HCASE Method" style="height: 1000px; width:600px;"/>
 
 
-**For Contributors**
+
+
+
+# Test Drive HCASE
+
+We prepared a workflow that showcases how you can create an HCASE space and embed compounds into it that is available as `code/HCASE_Embedding_Parallel.ipynb` in the root of the HCASE repository. The workflows does not contain the visualization step, for that we refer you to `code/publication_workflows/HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb` and `code/publication_workflows/HCASE_Experiments_KNN_in_HCASE_Space.ipynb` as starting points.
+
+The `code/HCASE_Embedding_Parallel.ipynb` can be executed once completing the [**Prerequisites**](https://github.com/ncats/hcase/tree/feat_parallel#process-to-replicate-the-analysis-enclosed-in-the-hcase-manuscript) - [**Setting Up Conda Environment**](https://github.com/ncats/hcase/tree/feat_parallel?tab=readme-ov-file#setting-up-conda-environment) sections (see: below).
+
+
+# For Contributors
 
 
 We appreciate your contribution to the source code of the HCASE method! 
@@ -23,15 +32,7 @@ We appreciate your contribution to the source code of the HCASE method!
 If you would like to create a new feature, or submit a fix, please follow this process. First, create a personal feature branch (e.g. `feature_new_1`) from the `feature` branch. Once your code is complete and tested OK on your end, please  create a pull-request (PR) from your feature branch to the `feature` branch of the HCASE repository. Approved features will be merged to the `main` branch.
 
 
-# Test Drive HCASE
-
-We prepared a workflow that showcases how you can create an HCASE space and embed compounds into it that is available as `code/HCASE_Embedding_Parallel.ipynb` in the root of the HCASE repository. The workflows does not contain the visualization step, for that we refer you to `code/publication_workflows/HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb` and `code/publication_workflows/HCASE_Experiments_KNN_in_HCASE_Space.ipynb` as starting points.
-
-The `code/HCASE_Embedding_Parallel.ipynb` can be executed once completing the `Prerequisites` - `Setting Up Conda Environment` sections (see: below).
-
-
-
-# Process to Replicate the Analysis Enclosed in the HCASE Manuscript ######
+# Process to Replicate the Analysis Enclosed in the HCASE Manuscript 
 
 
 
