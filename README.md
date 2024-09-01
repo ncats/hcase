@@ -14,14 +14,17 @@ G. Zahoranszky-Kohalmi, K. K. Wan, A. G. Godfrey, Hilbert-Curve Assisted Structu
 <img src="plots/HCASE_Method.png" alt="HCASE Method" style="height: 1000px; width:600px;"/>
 
 
+# Publication Codebase and Continuous Development
 
+The `publication` branch of the HCASE repository contains the source code and data files in the exact same status at the time the manuscript was under review and got accepted. We will keep this branch unchanged, but we continue the development and improvement of the codebase in the `main` branch.
 
+If you are interested in contributing to the HCASE repository please refer to the [**For Contributors**](#for-contributors) section below.
 
 # Test Drive HCASE
 
-We prepared a workflow that showcases how you can create an HCASE space and embed compounds into it that is available as `code/HCASE_Embedding_Parallel.ipynb` in the root of the HCASE repository. The workflows does not contain the visualization step, for that we refer you to `code/publication_workflows/HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb` and `code/publication_workflows/HCASE_Experiments_KNN_in_HCASE_Space.ipynb` as starting points.
+We prepared a workflow that showcases how you can create an HCASE space and embed compounds into it, potentially using multiple cores (recommended). It is available as `code/HCASE_Embedding_Parallel.ipynb` in the root of the HCASE repository. The workflows does not contain the visualization step, for that we refer you to `code/publication_workflows/HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb` and `code/publication_workflows/HCASE_Experiments_KNN_in_HCASE_Space.ipynb` as starting points.
 
-The `code/HCASE_Embedding_Parallel.ipynb` can be executed once completing the [**Prerequisites**](https://github.com/ncats/hcase/tree/feat_parallel#process-to-replicate-the-analysis-enclosed-in-the-hcase-manuscript) - [**Setting Up Conda Environment**](https://github.com/ncats/hcase/tree/feat_parallel?tab=readme-ov-file#setting-up-conda-environment) sections (see: below).
+The `code/HCASE_Embedding_Parallel.ipynb` can be executed once completing the [**Prerequisites**](#process-to-replicate-the-analysis-enclosed-in-the-hcase-manuscript) through [**Setting Up Conda Environment**](#setting-up-conda-environment) sections (see: below).
 
 
 # For Contributors
