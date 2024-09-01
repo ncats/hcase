@@ -1,0 +1,105 @@
+# Licenses of modules utilized in the source code
+
+Note, that these modules might come under different license types as compared to the license type of the HCASE source code (`HCASE/code` and `HCASE/aux_code`), which is MIT License.
+
+
+- SciKit-Learn Python module:	[ http://scikit-learn.org, https://github.com/scikit-learn/scikit-learn ]	3-Clause BSD license	[ https://github.com/scikit-learn/scikit-learn/blob/master/COPYING ]
+
+
+- SciPy library:	[ https://github.com/scipy/scipy ]	BSD 3-Clause "New" or "Revised" License	[ https://github.com/scipy/scipy/blob/master/LICENSE.txt ] 
+
+
+- RDKit	[ https://www.rdkit.org/ ]	BSD license	[ https://github.com/rdkit/rdkit/blob/master/license.txt ]
+
+
+- hilbertcurve.hilbertcurve:	[ https://github.com/galtay/hilbertcurve ]	MIT License	[ https://github.com/galtay/hilbertcurve/blob/develop/LICENSE ]
+
+
+- MatPlotLib:	[ https://github.com/matplotlib/matplotlib ]	Custom	[ https://github.com/matplotlib/matplotlib/blob/master/LICENSE/LICENSE ]
+
+
+- NumPy:	Custom	[ https://numpy.org/license.html ]
+
+
+- Pandas:	[ https://github.com/pandas-dev/pandas]	BSD 3-Clause License	[ https://github.com/pandas-dev/pandas/blob/master/LICENSE ] 
+
+
+- Seaborn:	[ https://github.com/mwaskom/seaborn ]	BSD 3-Clause "New" or "Revised" License	[ https://github.com/mwaskom/seaborn/blob/master/LICENSE ] 
+
+- The prior-art Scaffold Key algorithm is described in P. Ertl, “Intuitive Ordering of Scaffolds and Scaffold Similarity Searching Using Scaffold Keys,” Journal of Chemical Information and Modeling, vol. 54, no. 6, pp. 1617–1622, Jun. 2014, doi: 10.1021/ci5001983.
+
+
+
+
+# Licenses of resources
+
+Note, that some of the utilized resources might come under different liences of ththe data included in the HCASE repository (`HCASE/data/`).
+
+- ChEMBL DB version 24:	[ https://chembl.gitbook.io/chembl-interface-documentation/about ]	Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)	[ https://creativecommons.org/licenses/by-sa/3.0/ ]
+
+
+- ChEMBL Natural Products Subset Data:	Creative Commons Attribution-ShareAlike 3.0 Unported License	[ https://creativecommons.org/licenses/by-sa/3.0/ ]
+
+
+- DrugBank 5.0.9:	Creative Common’s Attribution-NonCommercial 4.0 International License	[ https://www.drugbank.ca/releases/5-0-9 , https://creativecommons.org/licenses/by-nc/4.0/legalcode ]
+
+
+- CANVASS:	Creative Commons Attribution 4.0 International Public License	CC-BY 4.0 International	[ https://creativecommons.org/licenses/by/4.0/legalcode.txt ]
+
+
+
+
+
+
+
+
+# Annotations and remarks regarding Jupyter Notebooks:
+
+
+`code/HCASE_Embedding_Reduced.ipynb`  Derivative work of DrugBank and ChEMBL scaffolds (ChEMBL v24.1) datasets.
+
+`code/HCASE_Embedding.ipynb`  Derivative work of DrugBank and ChEMBL scaffolds (ChEMBL v24.1) datasets.
+
+`code/HCASE_Experiments_Aggregate.ipynb`  Derivative work of DrugBank, CANVASS and NatProd scaffolds (ChEMBL v23) datasets.
+
+`code/HCASE_Experiments_Altered_tSNE_CherryPicked_Scaffolds.ipynb`    Derivative work of ChEMBL scaffolds (ChEMBL v24.1) datasets.
+
+`code/HCASE_Experiments_Altered_tSNE_KNN.ipynb`   Derivative work of DrugBank and ChEMBL scaffolds (ChEMBL v24.1) datasets.
+
+`code/HCASE_Experiments_Altered_tSNE_Reduced_HCASE_Space_CherryPicked_Scaffolds.ipynb`    Derivative work of ChEMBL scaffolds (ChEMBL v24.1) datasets.
+
+`code/HCASE_Experiments_CANVASS_into_HCASE_ChEMBL.ipynb`  Derivative work of CANVASS and ChEMBL v24.1 datasets.
+
+`code/HCASE_Experiments_Chebyshev.ipynb`  Derivative work of all input datasets.
+
+`code/HCASE_Experiments_Chebyshev_Kendall.ipynb`  Derivative work of all input datasets.
+
+`code/HCASE_Experiments_Cherry_Picked_Scaffolds_in_Reduced_HCASE_Space.ipynb` Derivative work of CANVASS and ChEMBL v24.1 datasets.
+
+`code/HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb`    Derivative work of CANVASS and ChEMBL v24.1 datasets.
+
+`code/HCASE_Experiments_Compare_HCASE_ChEMBL_NatProd_Embeddings.ipynb`     Derivative work of all input datasets.
+
+`code/HCASE_Experiments_Drugs_and_CANVASS_into_HCASE_NatProd.ipynb`   Derivative work of DrugBank, CANVASS and NatProd scaffolds (ChEMBL v23) datasets.
+
+`code/HCASE_Experiments_KNN_in_HCASE_Space.ipynb` Derivative work of DrugBank and ChEMBL scaffolds (ChEMBL v24.1) datasets.
+
+`code/HCASE_Experiments_KNN_in_Reduced_HCASE_Space.ipynb` Derivative work of DrugBank and ChEMBL scaffolds (ChEMBL v24.1) datasets.
+
+`code/HCASE_Experiments_Quantify_Overlap.ipynb`   Derivative work of all input datasets.
+
+`code/HCASE_Experiments_Reduced_Altered_tSNE_KNN.ipynb`   Derivative work of DrugBank and ChEMBL scaffolds (ChEMBL v24.1) datasets.
+
+`code/HCASE_Experiments_tSNE.ipynb`   Derivative work of DrugBank dataset.
+
+`code/HCASE_Plot_Altered_tSNE_CherryPicked_Scaffolds_Main_Text.ipynb` Derivative work of ChEMBL scaffolds (ChEMBL v24.1) datasets.
+
+`code/HCASE_Plot_Cherry_Picked_Scaffolds_MaintText.ipynb` Derivative work of ChEMBL scaffolds (ChEMBL v24.1) datasets.
+
+`code/HCASE_Plot_Compare_HCASE_ChEMBL_NatProd_Embeddings_MainText.ipynb`  Derivative work of all input datasets.
+
+`code/HCASE_Plot_tSNE_MainText.ipynb` Derivative work of DrugBank dataset.
+
+`code/hcase_style.xml`	HCASE style for HCASE canyon analysis in Cytoscape.	MIT License	[ https://github.com/galtay/hilbertcurve/blob/develop/LICENSE ]
+
+`code/HCASE_Experimtent_HCASE_Preserve_Distance.ipynb`  Derivative work of all input datasets.

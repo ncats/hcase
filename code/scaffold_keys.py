@@ -659,6 +659,9 @@ def onestring(scaffold_key, has_inchikey=False):
 
 
 def sk_distance(sk1, sk2):
+
+
+
     distance = 0.0
 
     tmp1 = sk1.split(' ')

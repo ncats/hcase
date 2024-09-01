@@ -1,16 +1,39 @@
 # This is the Source Code and Data Repository of the HCASE Method
 
 
-**Reference**
+**Cite Us**
 
-[G. Zahoranszky-Kohalmi, K. K. Wan, A. G. Godfrey, Hilbert-Curve Assisted Structure Embedding Method, ChemRxiv, 28 February 2020, Version 1, DOI: 10.26434/chemrxiv.11911296.v1](https://chemrxiv.org/engage/chemrxiv/article-details/60c74874702a9bd9b418afaa)
+Zahoránszky-Kőhalmi, G., Wan, K.K. & Godfrey, A.G. Hilbert-curve assisted structure embedding method. J Cheminform 16, 87 (2024). DOI:[https://doi.org/10.1186/s13321-024-00850-z](https://doi.org/10.1186/s13321-024-00850-z)
+
+
 
 
 <img src="plots/HCASE_Method.png" alt="HCASE Method" style="height: 1000px; width:600px;"/>
 
+**Preprint**
+
+[G. Zahoranszky-Kohalmi, K. K. Wan, A. G. Godfrey, Hilbert-Curve Assisted Structure Embedding Method, ChemRxiv, 28 February 2020, Version 1, DOI: 10.26434/chemrxiv.11911296.v1](https://chemrxiv.org/engage/chemrxiv/article-details/60c74874702a9bd9b418afaa)
+
+
+**For Contributors**
+
+
+We appreciate your contribution to the source code of the HCASE method! 
+
+If you would like to create a new feature, or submit a fix, please follow this process. First, create a personal feature branch (e.g. `feature_new_1`) from the `feature` branch. Once your code is complete and tested OK on your end, please  create a pull-request (PR) from your feature branch to the `feature` branch of the HCASE repository. Approved features will be merged to the `main` branch.
+
+
+# Test Drive HCASE
+
+We prepared a workflow that showcases how you can create an HCASE space and embed compounds into it that is available as `code/HCASE_Embedding_Parallel.ipynb` in the root of the HCASE repository. The workflows does not contain the visualization step, for that we refer you to `code/publication_workflows/HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb` and `code/publication_workflows/HCASE_Experiments_KNN_in_HCASE_Space.ipynb` as starting points.
+
+The `code/HCASE_Embedding_Parallel.ipynb` can be executed once completing the `Prerequisites` - `Setting Up Conda Environment` sections (see: below).
+
 
 
 # Process to Replicate the Analysis Enclosed in the HCASE Manuscript ######
+
+
 
 ## Prerequisites
 
@@ -50,6 +73,13 @@ See: [https://conda.io/projects/conda/en/latest/user-guide/install/index.html](h
 
 `conda activate hcase`  (this step is necessary everytime you want to run the HCASE method and/or the experiments)
 
+
+## Post Publication Notes
+
+For the sake of clarity, we moved all the Jupyter Notebook (.ipynb) files into `code/publication_workflows` subdirectory after our paper got published. 
+
+
+Before continuing with the rest of the instructions to reproduce the experiments, *copy* or *move* the entire content of `code/publication_workflows/` into `code/` (i.e. one level up in the filesystem).
 
 
 ## Execute All Experiments

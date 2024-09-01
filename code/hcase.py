@@ -25,8 +25,13 @@
 # Ref: https://www.geeksforgeeks.org/log-functions-python/
 # Ref: https://www.geeksforgeeks.org/python-pandas-split-strings-into-two-list-columns-using-str-split/
 # Ref: https://www.w3schools.com/python/ref_math_ceil.asp
-#
+# ChatGPT 4.0 Palantir Instance
+# ChatGPT 4o www.openai.com
 
+
+"""
+By ChatGPT 4.0 Palantir Instance
+"""
 
 import sys
 import math
@@ -36,12 +41,125 @@ import pandas as pd
 import rdkit
 from rdkit import Chem
 
+import warnings
+from rdkit import RDLogger
+
+
 from hilbertcurve.hilbertcurve import HilbertCurve
 
 from scaffold_keys import smiles2bmscaffold, smiles2scaffoldkey, sk_distance, onestring
 
+from multiprocessing import Pool
+from tqdm import tqdm
 
-def order_scaffolds(df):
+import numpy as np
+
+import pdb
+
+
+
+lg = RDLogger.logger()
+lg.setLevel(RDLogger.CRITICAL)
+
+
+
+def apply_sk_on_split(data_split):
+    return (data_split.apply(sk))
+
+
+
+def parallel_apply_sk(df, func, n_cores=4):
+
+        
+    data_split = np.array_split(df['structure'], n_cores)
+    pool = Pool(n_cores)
+    data = pd.concat(tqdm(pool.map(func, data_split), total=n_cores))
+    pool.close()
+    pool.join()
+    return (data)
+
+
+def apply_sk_one_on_split(data_split):
+    return (data_split.apply(sk_one))
+
+
+def parallel_apply_sk_one(df, func, n_cores=4):
+
+        
+    data_split = np.array_split(df['sk'], n_cores)
+    pool = Pool(n_cores)
+    data = pd.concat(tqdm(pool.map(func, data_split), total=n_cores))
+    pool.close()
+    pool.join()
+    return (data)
+
+
+def apply_smiles2bmscaffold_on_split(data_split):
+    return (data_split.apply(smiles2bmscaffold))
+
+
+def parallel_apply_smiles2bmscaffold(df, func, n_cores=4):
+
+        
+    data_split = np.array_split(df['structure'], n_cores)
+    pool = Pool(n_cores)
+    data = pd.concat(tqdm(pool.map(func, data_split), total=n_cores))
+    pool.close()
+    pool.join()
+    return (data)
+
+
+
+def apply_smiles2scaffoldkey_on_split(data_split, trailing_inchikey = False):
+    return (data_split.apply(smiles2scaffoldkey, trailing_inchikey=trailing_inchikey))
+
+def parallel_apply_smiles2scaffoldkey (df, func, trailing_inchikey = False, n_cores = 4):
+    data_split = np.array_split(df['bms'], n_cores)
+    pool = Pool(n_cores)
+    data = pd.concat(tqdm(pool.starmap(func, [(split, trailing_inchikey) for split in data_split]), total=n_cores))
+    pool.close()
+    pool.join()
+    return (data)
+
+
+
+def apply_closest_scaffold_on_split(data_split, df_space, nr_structures):
+    return data_split.apply(lambda x: closest_scaffold(x['sk_struct'], df_space, x['idx'], nr_structures), axis=1)
+
+def parallel_apply_closest_scaffold(df, df_space, nr_structures, func, n_cores=4):
+    data_split = np.array_split(df[['sk_struct', 'idx']], n_cores)
+    pool = Pool(n_cores)
+    data = pd.concat(tqdm(pool.starmap(func, [(split, df_space, nr_structures) for split in data_split]), total=n_cores))
+    pool.close()
+    pool.join()
+    return data
+
+def apply_get_bucket_id_on_split(data_split, bucket_size):
+    return data_split.apply(lambda x: get_bucket_id(x, bucket_size))
+
+def parallel_apply_get_bucket_id(df, bucket_size, func, n_cores=4):
+    data_split = np.array_split(df['closest_order'], n_cores)
+    pool = Pool(n_cores)
+    data = pd.concat(tqdm(pool.starmap(func, [(split, bucket_size) for split in data_split]), total=n_cores))
+    pool.close()
+    pool.join()
+    return data
+
+
+def apply_get_hilbert_coordinates_on_split(data_split, hilbert_curve):
+    return data_split.apply(lambda x: get_hilbert_coordinates(hilbert_curve, x))
+
+def parallel_apply_get_hilbert_coordinates(df, hilbert_curve, func, n_cores=4):
+    data_split = np.array_split(df['bucket_id'], n_cores)
+    pool = Pool(n_cores)
+    data = pd.concat(tqdm(pool.starmap(func, [(split, hilbert_curve) for split in data_split]), total=n_cores))
+    pool.close()
+    pool.join()
+    return data
+
+
+
+def order_scaffolds(df, n_cores):
     """
         df: Pandas data frame structure (columns):
 
@@ -61,18 +179,38 @@ def order_scaffolds(df):
                    example: NOWKCMXCCJGMRR-UHFFFAOYSA-N
 
     """
+    print ('[*] Ordering reference scaffolds ..')
 
     df = df[df['ptype'] == 'scaffold']
     nr_orig_scaffolds = df.shape[0]
 
     # df = df.sample (100, random_state = 55555)
 
-    df['sk'] = df.apply(lambda x: sk(x['structure'], trailing_inchikey=True), axis=1)
+    # Sequential
+    #df['sk'] = df.apply(lambda x: sk(x['structure'], trailing_inchikey=True), axis=1)
 
+    # Parallel
+    df['sk'] = parallel_apply_sk(df, apply_sk_on_split, n_cores)
+
+
+
+
+    
     df = df[df['sk'] != 'NA']
 
-    df['sk_one'] = df.apply(lambda x: sk_one(x['sk'], has_inchikey=True), axis=1)
 
+    
+    # Sequential
+    #df['sk_one'] = df.apply(lambda x: sk_one(x['sk'], has_inchikey=True), axis=1)
+
+    # Parallel
+    df['sk_one'] = parallel_apply_sk_one(df, apply_sk_one_on_split, n_cores)
+
+
+    
+    
+
+    
     df = df.sort_values(['sk_one'])
 
     df = df.groupby(['sk_one'], as_index=False).agg({
@@ -99,6 +237,8 @@ def order_scaffolds(df):
     print('[*] Number of unique reference scaffolds:')
     print(df.shape[0])
 
+    print ('[*] Done.')
+    
     return (df)
 
 
@@ -134,7 +274,7 @@ def sk(smiles, trailing_inchikey=True):
     return (sk)
 
 
-def sk_one(sk, has_inchikey=False):
+def sk_one(sk, has_inchikey=True):
     sk = onestring(sk, has_inchikey)
 
     return (sk)
@@ -165,7 +305,7 @@ def closest_scaffold(sk_struct, df_space, idx, nr_structures):
     df = df.sort_values(['sk_distance', 'sk_struct'])
     closest_scaffold_order = df['order'].values[0]
 
-    return (closest_scaffold_order)
+    return (int(closest_scaffold_order))
 
 
 def get_bucket_id(closest_order, bucket_size):
@@ -190,7 +330,7 @@ def get_hilbert_coordinates(hc, bucket_id):
     return (coordinate_str)
 
 
-def train(df):
+def train(df, n_cores):
     """
         df: Pandas data frame structure (columns):
 
@@ -217,10 +357,16 @@ def train(df):
 
     # Extract reference scaffolds set (unique scaffolds) and order them by their Scaffold Keys (SKs)
 
-    df = order_scaffolds(df)
+    
+
+    df = order_scaffolds(df, n_cores)
+
+    
 
     df_space = df
 
+
+    
     return (df_space)
 
 
@@ -242,7 +388,13 @@ def compute_max_phc_order(df_space):
     return (int(max_z))
 
 
-def embed(df_space, df_structures, n_dim):
+
+
+
+
+    
+
+def embed(df_space, df_structures, n_dim, n_cores = 4):
     """
         df_space: Pandas data frame, generated by hcase.train() method
 
@@ -265,11 +417,28 @@ def embed(df_space, df_structures, n_dim):
     # Invariant part, i.e. independent of the order of PHC (parameter "z")
 
     df_structures = df_structures[[id_colname, str_colname]].copy()
-    df_structures['bms'] = df_structures.apply(lambda x: smiles2bmscaffold(x[str_colname]), axis=1)
+
+    print (df_structures.columns)
+
+
+    print ('[*] Generating Bemis-Murcko scaffolds for compounds ..')
+
+    # Sequential
+    #df_structures['bms'] = df_structures.apply(lambda x: smiles2bmscaffold(x[str_colname]), axis=1)
+
+
+    # Parallel
+    df_structures['bms'] = parallel_apply_smiles2bmscaffold(df_structures, apply_smiles2bmscaffold_on_split, n_cores)
+    
 
     # filter out invalid of nonsense/empty scaffolds:
     df_structures = df_structures[df_structures['bms'] != 'NA']
 
+
+
+    print ('[*] .. done')
+
+    
     # df_space['jk'] = 1
 
     df_space = df_space.rename(columns={
@@ -279,8 +448,24 @@ def embed(df_space, df_structures, n_dim):
     nr_scaffolds = df_space.shape[0]
 
     # df_structures['jk'] = 1
-    df_structures['sk_struct'] = df_structures.apply(
-        lambda x: smiles2scaffoldkey(x['bms'], trailing_inchikey=False), axis=1)
+
+
+    print ('[*] Generating Scaffold-Keys for the Bemis-Murcko scaffolds of compounds ..')
+    
+    # Sequential
+    #df_structures['sk_struct'] = df_structures.apply
+    #    lambda x: smiles2scaffoldkey(x['bms'], trailing_inchikey=False), axis=1)
+
+    # Parallel
+    df_structures['sk_struct'] = parallel_apply_smiles2scaffoldkey (df_structures,
+                                                                  apply_smiles2scaffoldkey_on_split,
+                                                                  trailing_inchikey = False,
+                                                                  n_cores = n_cores)
+
+    print ('[*] .. done')
+
+
+
 
     print('[*] Number of input structures: %d' % (df_structures.shape[0]))
     df_structures = df_structures[df_structures['sk_struct'] != 'NA']
@@ -294,9 +479,24 @@ def embed(df_space, df_structures, n_dim):
     df_structures['idx'] = df_structures.index + 1
 
     nr_structures = df_structures.shape[0]
-    df_structures['closest_order'] = df_structures.apply(
-        lambda x: closest_scaffold(x['sk_struct'], df_space, x['idx'], nr_structures), axis=1)
+    
+    
 
+    print ('[*] Identifying the closest reference scaffolds of compounds ..')
+
+    # Sequential:
+    #df_structures['closest_order'] = df_structures.apply(
+    #    lambda x: closest_scaffold(x['sk_struct'], df_space, x['idx'], nr_structures), axis=1)
+
+
+    # Parallel:
+    df_structures['closest_order'] = parallel_apply_closest_scaffold(df_structures, df_space, nr_structures, apply_closest_scaffold_on_split, n_cores)
+ 
+
+    print ('[*] .. done') 
+
+
+    
     df_res = pd.DataFrame()
     first = True
 
@@ -315,11 +515,37 @@ def embed(df_space, df_structures, n_dim):
 
         df_hilbert = df_structures.copy()
 
-        df_hilbert['bucket_id'] = df_hilbert.apply(lambda x: get_bucket_id(x['closest_order'], bucket_size), axis=1)
 
-        df_hilbert['embedded_hs_coordinates'] = df_hilbert.apply(
-            lambda x: get_hilbert_coordinates(hilbert_curve, x['bucket_id']), axis=1)
+        
+        print (f'[*] Mapping compounds to pseudo-Hilbert-Curve of z={hc_order} ..')
+        
+        # Sequential
+        #df_hilbert['bucket_id'] = df_hilbert.apply(lambda x: get_bucket_id(x['closest_order'], bucket_size), axis=1)
 
+
+        # Parallel
+        df_hilbert['bucket_id'] = parallel_apply_get_bucket_id(df_hilbert, bucket_size, apply_get_bucket_id_on_split)
+        
+        
+        print ('[*] .. done')    
+
+
+
+        
+        print ('[*] Determining the 2D coordinate of compounds in the HCASE map the bucket id of compounds ..')        
+
+        # Sequential
+        #df_hilbert['embedded_hs_coordinates'] = df_hilbert.apply(
+        #    lambda x: get_hilbert_coordinates(hilbert_curve, x['bucket_id']), axis=1)
+
+
+        # Parallel
+        df_hilbert['embedded_hs_coordinates'] = parallel_apply_get_hilbert_coordinates(df_hilbert, hilbert_curve, apply_get_hilbert_coordinates_on_split)
+
+
+        print ('[*] .. done')   
+        
+        
         df = df_hilbert
 
         # df = df_structures.merge (df_space, left_on = 'closest_order', right_on = 'order', how = 'inner')
