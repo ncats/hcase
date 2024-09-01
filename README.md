@@ -29,7 +29,7 @@ The `code/HCASE_Embedding_Parallel.ipynb` can be executed once completing the [*
 
 We appreciate your contribution to the source code of the HCASE method! 
 
-If you would like to create a new feature, or submit a fix, please follow this process. First, create a personal feature branch (e.g. `feature_new_1`) from the `feature` branch. Once your code is complete and tested OK on your end, please  create a pull-request (PR) from your feature branch to the `feature` branch of the HCASE repository. Approved features will be merged to the `main` branch.
+If you would like to create a new feature, or submit a fix, please follow this process. First, create a personal feature branch (e.g. `feat_new_1`) from the `feature` branch. Once your code is complete and tested OK on your end, please  create a pull-request (PR) from your feature branch to the `feature` branch of the HCASE repository. Approved features will be merged to the `main` branch.
 
 
 # Process to Replicate the Analysis Enclosed in the HCASE Manuscript 
