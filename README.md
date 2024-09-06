@@ -22,9 +22,9 @@ If you are interested in contributing to the HCASE repository please refer to th
 
 # Test Drive HCASE
 
-We prepared a workflow that showcases how you can create an HCASE space and embed compounds into it, potentially using multiple cores (recommended). It is available as `code/HCASE_Embedding_Parallel.ipynb` in the root of the HCASE repository. The workflows does not contain the visualization step, for that we refer you to `code/publication_workflows/HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb` and `code/publication_workflows/HCASE_Experiments_KNN_in_HCASE_Space.ipynb` as starting points.
+We prepared a workflow that showcases how you can create an HCASE space and embed compounds into it, potentially using multiple cores (recommended). It is available as `examples/HCASE_Embedding_Parallel.ipynb` in the root of the HCASE repository. The workflows does not contain the visualization step, for that we refer you to `examples/publication_workflows/HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb` and `examples/publication_workflows/HCASE_Experiments_KNN_in_HCASE_Space.ipynb` as starting points.
 
-The `code/HCASE_Embedding_Parallel.ipynb` can be executed once completing the [**Prerequisites**](#process-to-replicate-the-analysis-enclosed-in-the-hcase-manuscript) through [**Setting Up Conda Environment**](#setting-up-conda-environment) sections (see: below).
+The `examples/HCASE_Embedding_Parallel.ipynb` can be executed once completing the [**Prerequisites**](#process-to-replicate-the-analysis-enclosed-in-the-hcase-manuscript) through [**Setting Up Conda Environment**](#setting-up-conda-environment) sections (see: below).
 
 
 # For Contributors
@@ -80,10 +80,10 @@ See: [https://conda.io/projects/conda/en/latest/user-guide/install/index.html](h
 
 ## Post Publication Notes
 
-For the sake of clarity, we moved all the Jupyter Notebook (.ipynb) files into `code/publication_workflows` subdirectory after our paper got published. 
+For the sake of clarity, we moved all the Jupyter Notebook (.ipynb) files into `examples/publication_workflows` subdirectory after our paper got published. 
 
 
-Before continuing with the rest of the instructions to reproduce the experiments, *copy* or *move* the entire content of `code/publication_workflows/` into `code/` (i.e. one level up in the filesystem).
+<!-- Before continuing with the rest of the instructions to reproduce the experiments, *copy* or *move* the entire content of `code/publication_workflows/` into `code/` (i.e. one level up in the filesystem). -->
 
 
 ## Execute All Experiments

@@ -1,5 +1,9 @@
-pandas
-rdkit
-hilbertcurve
-
-jupyter
+hilbertcurve==2.0.5
+matplotlib==3.8.4
+networkx==3.3
+notebook==7.0.8
+numpy==1.26.4
+pandas==2.2.2
+scipy==1.13.1
+seaborn==0.13.2
+tqdm==4.66.5
