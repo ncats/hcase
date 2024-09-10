@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name="hcases",
+    name="hcase",
     version="0.1.0",
     description="TO BE PROVIDED BY GERGELY.",
     packages=find_packages(include=["hcase", "hcase.*"]),  # Include only the hcase folder
