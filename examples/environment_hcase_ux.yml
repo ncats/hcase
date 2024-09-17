@@ -20,4 +20,4 @@ dependencies:
   - pip:
       - dash-core-components==2.0.0
       - dash-html-components==2.0.0
-      - -e ../hcase
+      - -e ../

@@ -15,7 +15,9 @@ dependencies:
   - scipy=1.13.1
   - seaborn=0.13.2
   - tqdm=4.66.5
+  - jupyter
   - pip:
       - scikit-learn==1.5.1
       - jupyter-contrib-nbextensions==0.7.0
+      - notebook
       - -e ../
