@@ -62,6 +62,16 @@ The primary HCASE library code is within the `hcase` subdirectory. See the `pip 
 
 Examples of how to use this code are found within the `examples` subdirectory. This directory contains a conda environment which will install the `hcase` code automatically.
 
+### Installing as a library
+
+The latest HCASE code can be installed via pip with the following command:
+
+`pip install git+https://github.com/ncats/hcase.git`
+
+Additionally certain branches can be installed with:
+
+`pip install git+https://github.com/ncats/hcase.git@BRANCH-NAME`
+
 ### Setting Up Examples Conda Environment
 
 Run the following to create the Conda environment:
