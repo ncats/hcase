@@ -84,13 +84,7 @@ Run the following to create the Conda environment:
 
 For the sake of clarity, we moved all the Jupyter Notebook (.ipynb) files into `examples/publication_workflows` subdirectory after our paper got published.
 
-### Execute All Experiments
-
-To execute all HCASE Experiments do the following:
-
-`cd examples/`
-
-`bash reproduce_HCASE_experiments.sh`
+To view the repository code at the time of publication view the `publication` branch. 
 
 ### Executing Individual Steps
 
