@@ -175,3 +175,6 @@ peer_review*
 code/reset*
 code/reset_*
 code/reset_*.*
+examples/reset*
+examples/reset_*
+examples/reset_*.*
