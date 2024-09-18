@@ -164,7 +164,7 @@ This repository contains source code, Jupyter notebooks, data and results files 
 
 * Source code subdirectories:
 
-`code/` and `aux_code`
+`hcase`, `code/`, and `aux_code`
 
 * Data and results subdirectory:
 
@@ -172,7 +172,7 @@ This repository contains source code, Jupyter notebooks, data and results files 
 
 * Jupyter Notebooks:
 
- Jupyter Notebooks can be found in the `code/` and `data/execute_notebooks/` subdirectories (files of `.ipynb` extension).
+ Jupyter Notebooks can be found in the `code/`, `examples`, and `data/execute_notebooks/` subdirectories (files of `.ipynb` extension).
 
 * Workflows:
 
@@ -216,22 +216,12 @@ KNIME workflows utilized in this study are contained in the `workflows/` directo
 
 Exporting Conda Environment for Reproduction
 
-Critical packages and versions:
+Critical dependencies :
 
-hilbertcurve: 1.0.3
-rdkit: 2018.09.1.0
-networkx: 2.4
+  - hilbertcurve
+  - networkx
+  - rdkit
 
-Exporting the environment:
-
-`conda env export --from-history | grep -v "^prefix: " > code/environment.yml`
-
-Manually modifying package versions of networkx and rdkit, and environment name:
-
-name: hcase-env
-
-* rdkit==2018.09.1.0
-* networkx==2.4
 
 ## References
 
