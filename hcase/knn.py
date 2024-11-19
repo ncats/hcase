@@ -80,7 +80,7 @@ def morgan_knn (df1, df2, str1_col, str2_col, id1_col, id2_col, k, radius, fplen
             df_res = df_target
             first = False
         else:
-            df_res = df_res.append (df_target, ignore_index = True)
+            df_res = pd.concat([df_res, df_target], ignore_index=True)
     
     df_res['knn_target_id'] = df_res [id2_col]
     
