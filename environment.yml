@@ -1,0 +1,15 @@
+name: cupy-env
+channels:
+  - conda-forge
+  - anaconda
+dependencies:
+  - python==3.13.2
+  - cupy==13.4.0
+  - rdkit==2024.09.6
+  - pandarallel==1.6.5
+  - ipywidgets==8.1.5
+  - pip==25.0.1
+  - numpy==2.2.3
+  - pytest
+  - pip:
+        - -e .
