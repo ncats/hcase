@@ -6,16 +6,10 @@
 #
 
 
-# Ref: https://www.rdkit.org/docs/GettingStartedInPython.html#fingerprinting-and-molecular-similarity
-# Ref: https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.sample.html
-
-
 import pandas as pd
-import rdkit
 from rdkit import Chem
 from rdkit.Chem import AllChem
 from rdkit import DataStructs
-import sys
 
 def is_valid (smiles):
     is_valid = False
@@ -119,23 +113,3 @@ def compute_sim (df, str1_col, str2_col, id1_col, id2_col, radius, fplength):
     
     return (df)
 
-"""
-
-fnamein = sys.argv[1]
-fnameout = sys.argv[2]
-nr_rnd_mols = int(sys.argv[3])
-fp_rad = int(sys.argv[4])
-fp_length = int(sys.argv[5])
-
-#fnamein = sys.argv[1]
-#fnameout = sys.argv[2]
-
-nr_rnd_mols = int(sys.argv[3])
-fp_rad = int(sys.argv[4])
-fp_length = int(sys.argv[5])
-
-
-df = pd.read_csv ('app_drugs_drugbnak_chembl_24_1_bms_ord_2_dim_2.tab', sep = '\t')
-
-df_rnd_mols = df.sample (n = nr_rnd_mols, random_state = 12345)
-"""

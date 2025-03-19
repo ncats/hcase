@@ -1,1 +1,1 @@
-from .hcase import train, embed
+from .hcase import embed
