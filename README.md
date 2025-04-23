@@ -20,15 +20,44 @@ If you are interested in contributing to the HCASE repository please refer to th
 
 ## Test Drive HCASE
 
-We prepared a workflow that showcases how you can create an HCASE space and embed compounds into it, potentially using multiple cores (recommended). It is available as `examples/HCASE_Embedding_Parallel.ipynb` in the root of the HCASE repository. The workflows does not contain the visualization step, for that we refer you to `examples/publication_workflows/HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb` and `examples/publication_workflows/HCASE_Experiments_KNN_in_HCASE_Space.ipynb` as starting points.
+To test the HCASE method, you can run the `embed_uspto.py` script located in the `examples/EmbedUSPTO` directory. This script demonstrates how to embed compounds into the HCASE space.
 
-The `examples/HCASE_Embedding_Parallel.ipynb` can be executed once completing the [**Prerequisites**](#process-to-replicate-the-analysis-enclosed-in-the-hcase-manuscript) through [**Setting Up Conda Environment**](#setting-up-conda-environment) sections (see: below).
+### Steps to Run the Script:
+
+1. Ensure you have set up the appropriate Conda environment (`hcase_examples` or `cpu-env`) as described in the [Setting Up Examples Conda Environment](#setting-up-examples-conda-environment) section.
+
+2. Navigate to the `examples/EmbedUSPTO` directory:
+   ```
+   cd examples/EmbedUSPTO
+   ```
+
+3. Ensure the file `2001_Sep2016_USPTOapplications_smiles.rsmi` is located in the same directory as the script.
+
+4. Run the script:
+   ```
+   python embed_uspto.py
+   ```
+
+This script will execute the embedding process and provide the results.
 
 ## For Contributors
 
-We appreciate your contribution to the source code of the HCASE method!
+We welcome contributions to the HCASE method! Here's how you can contribute:
 
-If you would like to create a new feature, or submit a fix, please follow this process. First, create a personal feature branch (e.g. `feat_new_1`) from the `feature` branch. Once your code is complete and tested OK on your end, please  create a pull-request (PR) from your feature branch to the `feature` branch of the HCASE repository. Approved features will be merged to the `main` branch.
+1. **Create a Feature Branch**:
+   - Start by creating a personal feature branch (e.g., `feat_new_1`) from the `feature` branch.
+
+2. **Develop and Test**:
+   - Implement your feature or fix.
+   - Ensure your code is thoroughly tested and works as expected.
+
+3. **Submit a Pull Request**:
+   - Once your code is complete and tested, create a pull request (PR) from your feature branch to the `feature` branch of the HCASE repository.
+
+4. **Approval and Merge**:
+   - Approved features will be merged into the `main` branch.
+
+Thank you for contributing to the HCASE repository!
 
 ## Process to Replicate the Analysis Enclosed in the HCASE Manuscript
 
@@ -76,9 +105,14 @@ Additionally certain branches can be installed with:
 
 Run the following to create the Conda environment:
 
+For GPU support:
 `conda env create -f examples/environment.yml`  (this step needs to be done only once, if you don't already have the *hcase_examples* conda environment)
 
-`conda activate hcase_examples`  (this step is necessary everytime you want to run the HCASE method and/or the experiments)
+For CPU-only support:
+`conda env create -f environment_cpu.yml`  (this step needs to be done only once, if you don't already have the *cpu-env* conda environment)
+
+Activate the environment:
+`conda activate hcase_examples` or `conda activate cpu-env`  (this step is necessary every time you want to run the HCASE method and/or the experiments)
 
 #### Post Publication Notes
 
@@ -86,77 +120,80 @@ For the sake of clarity, we moved all the Jupyter Notebook (.ipynb) files into `
 
 To view the repository code at the time of publication view the `publication` branch. 
 
-### Executing Individual Steps
+<details>
+<summary>### Executing Individual Steps</summary>
 
-Alternatively each seperate experiment can be ran by running the following jupyter notebooks. All jupyter notebooks are within the `examples` or `examples/publication_workflows` directories.
+Alternatively each separate experiment can be run by executing the following Jupyter notebooks. All Jupyter notebooks are within the `examples` or `examples/publication_workflows` directories.
 
 * Step 1: Create HCASE space using ChEMBL scaffolds
 
-Run workflow in `HCASE_Embedding.ipynb` .
+Run workflow in `HCASE_Embedding.ipynb`.
 
 * Step 2: Embed approved drug molecules from DrugBank into HCASE ChEMBL Scaffold space, and visualize the kNNs (k=5) of select chemotypes. Additionally, this is compared to the position of the same select chemotypes and 25 randomly selected molecules.
 
-Run workflow in `HCASE_Experiments_KNN_in_HCASE_Space.ipynb` .
+Run workflow in `HCASE_Experiments_KNN_in_HCASE_Space.ipynb`.
 
 * Step 3: HCASE Embedding of Cherry-Picked Scaffolds and their 50+50 Immediate Neighbors Based on Scaffold-Key Ordering
 
-Run workflow in `HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb` .
+Run workflow in `HCASE_Experiments_Cherry_Picked_Scaffolds.ipynb`.
 
 * Step 4: Create the embedding of CANVASS molecules into HCASE ChEMBL space.
 
-Run workflow in `HCASE_Experiments_CANVASS_into_HCASE_ChEMBL.ipynb` .
+Run workflow in `HCASE_Experiments_CANVASS_into_HCASE_ChEMBL.ipynb`.
 
 * Step 5: Create the embedding of approved drug and CANVASS molecules into HCASE NatProd space.
 
-Run workflow in `HCASE_Experiments_Drugs_and_CANVASS_into_HCASE_NatProd.ipynb` .
+Run workflow in `HCASE_Experiments_Drugs_and_CANVASS_into_HCASE_NatProd.ipynb`.
 
 * Step 6: Comparing HCASE ChEMBL and NatProd embeddings of approved drugs and CANVASS compounds
 
-Run workflow in `HCASE_Experiments_Compare_HCASE_ChEMBL_NatProd_Embeddings.ipynb` .
+Run workflow in `HCASE_Experiments_Compare_HCASE_ChEMBL_NatProd_Embeddings.ipynb`.
 
 * Step 7: Quantify overlap of approved drugs and CANVASS compounds embeddings in HCASE ChEMBL and NatProd spaces
 
-Run workflow in `HCASE_Experiments_Quantify_Overlap.ipynb` .
+Run workflow in `HCASE_Experiments_Quantify_Overlap.ipynb`.
 
 * Step 8: Chebyshev Distance and Rank Distance Correlation.
 
-Run workflow in `HCASE_Experiments_Chebyshev.ipynb` .
+Run workflow in `HCASE_Experiments_Chebyshev.ipynb`.
 
 * Step 9: T-SNE Embedding of drugs and highlighting KNNs (k=5) of select molecules. Repeating the embedding and visualization on a reduced set (90%) of drugs.
 
-Run workflow in `HCASE_Experiments_tSNE.ipynb` .
+Run workflow in `HCASE_Experiments_tSNE.ipynb`.
 
 * Step 10: Creating an HCASE space using a reduced set (90%) of ChEMBL scaffolds, and the previously cherry-picked scaffolds.
 
-Run workflow `HCASE_Embedding_Reduced.ipynb` .
+Run workflow `HCASE_Embedding_Reduced.ipynb`.
 
 * Step 11: Creating the HCASE embedding of the cherry-picked scaffolds into the reduced HCASE ChEMBL space generated in the previous step.
 
-Run workflow `HCASE_Experiments_Cherry_Picked_Scaffolds_in_Reduced_HCASE_Space.ipynb` .
+Run workflow `HCASE_Experiments_Cherry_Picked_Scaffolds_in_Reduced_HCASE_Space.ipynb`.
 
 * Step 12: Repeating Step 2, only the KNN analysis of approved drug molecules is performed in a reduced HCASE ChEMBL scaffold space (90% subset of original ChEMBL scaffold used to create the HCASE space). So-called Not-NN neighbor analysis is not repeated, only the KNNs of the randomly selected 5 drug molecules.
 
-Run workflow `HCASE_Experiments_KNN_in_Reduced_HCASE_Space.ipynb` .
+Run workflow `HCASE_Experiments_KNN_in_Reduced_HCASE_Space.ipynb`.
 
 * Step 13: Perform embedding of cherry-picked scaffolds using the Altered t-SNE method into ChEMBL scaffold space.
 
-Run workflow `HCASE_Experiments_Altered_tSNE_CherryPicked_Scaffolds.ipynb` .
+Run workflow `HCASE_Experiments_Altered_tSNE_CherryPicked_Scaffolds.ipynb`.
 
 * Step 14: Repeating the previous step (Step 13) utilizing the union of the 90% subset of the reference scaffolds and the Cherry-Picked scaffolds.
 
-Run workflow `HCASE_Experiments_Altered_tSNE_Reduced_HCASE_Space_CherryPicked_Scaffolds.ipynb` .
+Run workflow `HCASE_Experiments_Altered_tSNE_Reduced_HCASE_Space_CherryPicked_Scaffolds.ipynb`.
 
 * Step 15: Embed approved drug molecules from DrugBank into Altered t-SNE ChEMBL Scaffold space, and visualize the kNNs (k=5) of select chemotypes.
 
-Run workflow `HCASE_Experiments_Altered_tSNE_KNN.ipynb` .
+Run workflow `HCASE_Experiments_Altered_tSNE_KNN.ipynb`.
 
 * Step 16: Repeating Step 15, i.e. performing the Altered t-SNE embedding of the same 5 randomly selected drug molecules and their KNNs with the difference that a 90% reduced Altered t-SNE scaffold space is used for the embedding.
 
-Run workflow `HCASE_Experiments_Reduced_Altered_tSNE_KNN.ipynb` .
+Run workflow `HCASE_Experiments_Reduced_Altered_tSNE_KNN.ipynb`.
 
 * Step 17: Aggregate embeddings.
 
-Run workflow `HCASE_Experiments_Aggregate.ipynb` .
+Run workflow `HCASE_Experiments_Aggregate.ipynb`.
+
+</details>
 
 ## License Related Section
 
@@ -212,30 +249,12 @@ KNIME workflows utilized in this study are contained in the `workflows/` directo
 
 * KNIME: KNIME License Terms and Conditions [https://www.knime.com/downloads/full-license](https://www.knime.com/downloads/full-license)
 
+
 ## Remarks
 
-Exporting Conda Environment for Reproduction
+### Exporting Conda Environment for Reproduction
 
-Critical dependencies :
-
-  - hilbertcurve
-  - networkx
-  - rdkit
-
-
-## References
-
-<br/>
-https://stackoverflow.com/questions/5226311/installing-specific-package-versions-with-pip?rq=1
-<br/>
-https://stackoverflow.com/questions/38411942/anaconda-conda-install-a-specific-package-version
-<br/>
-https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html
-<br/>
-https://stackoverflow.com/questions/41274007/anaconda-export-environment-file
-<br/>
-https://stackoverflow.com/questions/43222407/how-to-list-package-versions-available-with-conda
-<br/>
-https://www.markdownguide.org/basic-syntax/
-<br/>
-https://stackoverflow.com/questions/62852772/error-when-getting-git-lfs-files-object-does-not-exist-on-the-server-404-obj
+#### Critical Dependencies:
+- `hilbertcurve`
+- `networkx`
+- `rdkit`

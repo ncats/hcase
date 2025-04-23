@@ -2,7 +2,6 @@ import pandas as pd
 import re
 from tqdm.auto import tqdm
 tqdm.pandas()
-import cupy as cp
 from hcase.fingerprints import compute_substructure_batched, compute_fingerprints_batched, undo_stringify_fingerprint
 from hcase import embed
 
@@ -48,7 +47,7 @@ def extract_product_smiles(reaction_smiles):
 file_name = '2001_Sep2016_USPTOapplications_smiles.rsmi'
 substructure_file = 'substructures.csv'
 fingerprint_file = 'fingerprints.csv'
-skip_fingerprint_generation = True
+skip_fingerprint_generation = False
 
 
 if not skip_fingerprint_generation:
@@ -65,7 +64,11 @@ if not skip_fingerprint_generation:
 df_fingerprints = pd.read_csv(fingerprint_file, usecols=['fingerprint'])
 ref_fingerprints = df_fingerprints['fingerprint'].values
 ref_fingerprints = undo_stringify_fingerprint(ref_fingerprints)
-use_cupy = cp.cuda.is_available()
+try:
+    import cupy as cp
+    use_cupy = cp.cuda.is_available()
+except ImportError:
+    use_cupy = False
 embedded_data = embed(
     ref_fingerprints,
     n_dim=2,
