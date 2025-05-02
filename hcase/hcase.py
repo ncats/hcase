@@ -11,7 +11,6 @@
 
 import math
 import numpy as np
-import cupy as cp
 from tqdm import tqdm
 import os
 import pandas as pd
@@ -57,11 +56,13 @@ def embed(ref_fingerprints: np.ndarray, n_dim: int = 2,
     """
     Embeds new structures based on reference fingerprints.
     """
+        
     if distance_fn not in distance_fn_mapping:
         raise ValueError(f"Unknown distance function: {distance_fn}. Choose from {list(distance_fn_mapping.keys())}")
     distance_fn = distance_fn_mapping[distance_fn]
 
     if use_cupy:
+        import cupy as cp
         ref_fingerprints = cp.asarray(ref_fingerprints, dtype=cp.float32)
 
     if target_fingerprints is None:
