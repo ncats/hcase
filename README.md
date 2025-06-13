@@ -40,6 +40,21 @@ To test the HCASE method, you can run the `embed_uspto.py` script located in the
 
 This script will execute the embedding process and provide the results.
 
+## Interactive Heatmap Plotting and Features
+
+The HCASE repository includes an interactive heatmap visualization tool for exploring the distribution of embedded chemical structures. This tool is implemented in `hcase/plot.py` and provides the following features:
+
+- **Automatic Deployment**: The Dash app for the heatmap visualization is automatically launched when running the USPTO embedding workflow (e.g., `examples/EmbedUSPTO/embed_uspto.py`). No separate launch step is required.
+- **Frequency Heatmap**: Visualizes the frequency of structures in each region of the embedded space, using log-scaled bins for better dynamic range.
+- **Color Scheme**: The heatmap uses a discrete, inverted color scale—light colors represent low frequency counts, and dark colors represent high frequency counts.
+- **Plot Area Border**: The plot area (data region) is outlined with a clear border, making the data region visually distinct. Axis ticks and labels are positioned just outside this border.
+- **Interactive Search**: Users can search for specific reference or target structures by SMILES or InChIKey, and matching points are highlighted on the heatmap.
+- **Structure Display**: Clicking on a heatmap cell displays the reference structure and a grid of corresponding target structures, with options to highlight substructure overlaps.
+- **Frequency Range Slider**: A slider allows users to filter the heatmap by frequency range, using log-scale bins.
+- **Legend**: A color legend explains the mapping between frequency bins and colors.
+
+To use the heatmap tool, simply run the USPTO embedding workflow as described above. The Dash app will be deployed automatically, enabling detailed exploration of the chemical embedding space and helping users identify regions of interest, structure clusters, and outliers.
+
 ## For Contributors
 
 We welcome contributions to the HCASE method! Here's how you can contribute:
