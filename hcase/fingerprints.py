@@ -5,7 +5,6 @@ import pandas as pd
 from pandarallel import pandarallel
 from tqdm import tqdm
 import os
-import gc
 
 
 from hcase.substructures import smiles2bmscaffold
@@ -41,7 +40,14 @@ def compute_substructure(structures: np.ndarray, method=smiles2bmscaffold):
     df_valid = df[df['substructure'] != 'NA'].copy()
     return df_valid
 
-def compute_substructure_batched(structures, method=smiles2bmscaffold, batch_size=100000, csv_file='substructures.csv', parallel=True):
+def compute_substructure_batched(
+    structures,
+    method=smiles2bmscaffold,
+    batch_size=100000,
+    csv_file='substructures.csv',
+    parallel=True,
+    deduplicate=True
+):
     """Computes substructures in batches, appending to a CSV file and resuming from previous progress."""
 
     # Check existing results
@@ -49,27 +55,17 @@ def compute_substructure_batched(structures, method=smiles2bmscaffold, batch_siz
     if os.path.exists(csv_file):
         df_existing = pd.read_csv(csv_file, usecols=['structure'])
         processed_structures = set(df_existing['structure'])
-        # Free memory
-        del df_existing
-        gc.collect()
-
 
     # Filter only new structures
     structures = [s for s in structures if s not in processed_structures]
-    # Free memory
-    del processed_structures
-    gc.collect()
 
     # If everything is processed, exit early
     if not structures:
         return
 
     # Process in batches
-    first_batch = not os.path.exists(csv_file)  # If file exists, append instead
+    first_batch = not os.path.exists(csv_file)
     batches = [structures[i:i + batch_size] for i in range(0, len(structures), batch_size)]
-    # Free memory
-    del structures
-    gc.collect()
 
     for batch in tqdm(batches, desc="Processing substructure batches", unit="batch"):
         df = pd.DataFrame({'structure': batch})
@@ -82,6 +78,12 @@ def compute_substructure_batched(structures, method=smiles2bmscaffold, batch_siz
         # Append results, preserving existing data
         df.to_csv(csv_file, mode='w' if first_batch else 'a', header=first_batch, index=False)
         first_batch = False
+
+    # Deduplicate structure→substructure, keeping only the first instance
+    if deduplicate:
+        df_all = pd.read_csv(csv_file)
+        df_dedup = df_all.drop_duplicates(subset='substructure', keep='first')
+        df_dedup.to_csv(csv_file, index=False)
 
 
 def compute_fingerprints(df: pd.DataFrame, method=lambda x: smiles2scaffoldkey(x, return_as_string=True)):
@@ -102,7 +104,6 @@ def compute_fingerprints_batched(substructure_file='substructures.csv',
     if os.path.exists(csv_file):
         for chunk in pd.read_csv(csv_file, usecols=['substructure'], dtype=str, chunksize=10000):
             processed_substructures.update(chunk['substructure'].values)
-        gc.collect()
 
     # Get total line count (excluding header)
     with open(substructure_file) as f:
@@ -136,10 +137,6 @@ def compute_fingerprints_batched(substructure_file='substructures.csv',
             # Append results
             new_substructures.to_csv(csv_file, mode='w' if first_batch else 'a', header=first_batch, index=False)
             first_batch = False
-
-            # Free memory
-            del new_substructures, df_substructures
-            gc.collect()
             
             # Update progress bar
             pbar.update(1)

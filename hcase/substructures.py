@@ -15,7 +15,7 @@ def smiles2bmscaffold(smiles):
         try:
             mol = Chem.MolFromSmiles(smiles)
             bms = MurckoScaffold.GetScaffoldForMol(mol)
-            bms = Chem.MolToSmiles(bms)
+            bms = Chem.MolToSmiles(bms, canonical=True)
 
         except:
             bms = 'NA'

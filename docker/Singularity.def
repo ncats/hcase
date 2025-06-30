@@ -1,0 +1,61 @@
+Bootstrap: docker
+From: nvidia/cuda:12.2.0-devel-ubuntu22.04
+
+%environment
+    export PATH=/opt/conda/bin:$PATH
+    export DEBIAN_FRONTEND=noninteractive
+    export WORKDIR=/workspace
+
+%post
+    apt-get update && apt-get install -y \
+        wget \
+        git \
+        curl \
+        ca-certificates \
+        build-essential \
+        python3 \
+        python3-pip \
+        python3-venv \
+        && rm -rf /var/lib/apt/lists/*
+
+    # Symlink python3 and pip3
+    ln -s /usr/bin/python3 /usr/bin/python || true
+    ln -s /usr/bin/pip3 /usr/bin/pip || true
+
+    # Install Miniconda
+    wget --quiet https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
+    bash miniconda.sh -b -p /opt/conda
+    rm miniconda.sh
+
+    # Create workspace directory
+    mkdir -p /workspace
+
+    # Create conda environment
+    /opt/conda/bin/conda env create -f /workspace/environment.yml
+    /opt/conda/bin/conda clean -a
+
+    # Install cupy (adjust CUDA version if needed)
+    /opt/conda/bin/pip install cupy-cuda12x
+
+%files
+    aux_code /workspace/aux_code
+    data /workspace/data
+    examples /workspace/examples
+    hcase /workspace/hcase
+    log /workspace/log
+    plots /workspace/plots
+    tests /workspace/tests
+    workflows /workspace/workflows
+    environment.yml /workspace/environment.yml
+    requirements.txt /workspace/requirements.txt
+    README.md /workspace/README.md
+    LICENSE /workspace/LICENSE
+    Makefile /workspace/Makefile
+    pyproject.toml /workspace/pyproject.toml
+    setup.py /workspace/setup.py
+    DISCLAIMER /workspace/DISCLAIMER
+    NOTES /workspace/NOTES
+
+%runscript
+    cd /workspace
+    exec /opt/conda/bin/python "$@"
